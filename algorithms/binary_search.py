@@ -34,6 +34,9 @@ def binary_search(sorted_list, value):
     >>> binary_search(['Alpha', 'Bravo', 'Charlie', 'Delta', 'Echo'], 'Echo')
     4
 
+    >>> binary_search([1, 2, 3, 4, 5], 6) is None
+    True
+
     Reference: https://en.wikipedia.org/wiki/Binary_search_algorithm
     """
     first = 0
