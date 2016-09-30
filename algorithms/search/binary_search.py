@@ -2,7 +2,7 @@ def binary_search(sorted_list, value):
     """Given a sorted list and a value, returns the value's index.
 
     Positional arguments:
-    sorted_list -- a list sorted from low to high, e.g. [1, 3, 5, 9].
+    sorted_list -- a list sorted from low to high
     value -- a float, integer, or string to be found in the sorted list
 
     Analysis:
