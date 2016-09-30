@@ -20,6 +20,20 @@ def binary_search(sorted_list, value):
     middle element. If the value argument is found, its index is returned.
     Otherwise, the function will return None.
 
+    Examples:
+
+    >>> binary_search([1, 2, 3, 4], 2)
+    1
+
+    >>> binary_search([3.5, 4.5, 6.5, 7.5], 6.5)
+    2
+
+    >>> binary_search(list(range(1, 100000)), 3496)
+    3495
+
+    >>> binary_search(['Alpha', 'Bravo', 'Charlie', 'Delta', 'Echo'], 'Echo')
+    4
+
     Reference: https://en.wikipedia.org/wiki/Binary_search_algorithm
     """
     first = 0
