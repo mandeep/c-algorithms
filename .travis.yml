@@ -17,6 +17,6 @@ install:
   - pip install pytest
   - pip install pytest-cov
 script:
-  - py.test algorithms -s -v -x --cov=./
+  - pytest
 after_success:
   - coveralls
