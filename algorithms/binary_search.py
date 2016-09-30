@@ -19,6 +19,8 @@ def binary_search(sorted_list, value):
     variable continues to change until the value argument equals the middle
     element. If the value argument is found, its index is returned. Otherwise,
     the function will return None.
+
+    For further reading: https://en.wikipedia.org/wiki/Binary_search_algorithm
     """
     low = 0
     high = len(sorted_list) - 1
