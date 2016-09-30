@@ -1,16 +1,16 @@
 .. image:: images/algorithms.png
 
-|travis| |coverage|
+|travis| |coverage| |codacy|
 
 Algorithms intends to be an encyclopedia of popular and classic algorithms written
 in Python with a focus on readability. Professors and computer scientists around
-the world refrain from using design patterns and insist on naming variables
+the world write code with a disregard to code quality and insist on naming variables
 with single letters. The aim of this library is to present algorithms in an
 approachable fashion.
-
 
 
 .. |travis| image:: https://travis-ci.org/mandeep/Algorithms.svg?branch=master
     :target: https://travis-ci.org/mandeep/Algorithms
 .. |coverage| image:: https://img.shields.io/coveralls/mandeep/Algorithms.svg
     :target: https://coveralls.io/github/mandeep/Algorithms
+.. |codacy| image:: https://img.shields.io/codacy/grade/f472d6e9d5824ad08a8bc9db39ec5e89.svg   :target: https://www.codacy.com/app/bhutanimandeep/Algorithms/dashboard
