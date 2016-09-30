@@ -42,7 +42,7 @@ def binary_search(sorted_list, value):
     first = 0
     last = len(sorted_list) - 1
     while first <= last:
-        middle = (last + first) // 2
+        middle = (first + last) // 2
         if value < sorted_list[middle]:
             last = middle - 1
         elif value > sorted_list[middle]:
