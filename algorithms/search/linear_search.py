@@ -12,7 +12,6 @@ def linear_search(unordered_list, value):
     value argument is not contained within the list, None is returned.
 
     Examples:
-
     >>> linear_search([2, 1, 3, 4], 3)
     2
 
