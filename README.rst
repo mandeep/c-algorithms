@@ -13,4 +13,5 @@ approachable fashion.
     :target: https://travis-ci.org/mandeep/Algorithms
 .. |coverage| image:: https://img.shields.io/coveralls/mandeep/Algorithms.svg
     :target: https://coveralls.io/github/mandeep/Algorithms
-.. |codacy| image:: https://img.shields.io/codacy/grade/f472d6e9d5824ad08a8bc9db39ec5e89.svg   :target: https://www.codacy.com/app/bhutanimandeep/Algorithms/dashboard
+.. |codacy| image:: https://img.shields.io/codacy/grade/f472d6e9d5824ad08a8bc9db39ec5e89.svg
+    :target: https://www.codacy.com/app/bhutanimandeep/Algorithms/dashboard
