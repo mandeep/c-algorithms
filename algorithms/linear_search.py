@@ -10,6 +10,8 @@ def linear_search(unordered_list, value):
     element is checked against the value of the value argument. Once
     there is a match, the index of the element is returned. If the
     value argument is not contained within the list, None is returned.
+
+    Reference: https://en.wikipedia.org/wiki/Linear_search
     """
     for i, element in enumerate(unordered_list):
         if element == value:
