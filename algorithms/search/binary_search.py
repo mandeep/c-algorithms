@@ -21,7 +21,6 @@ def binary_search(sorted_list, value):
     Otherwise, the function will return None.
 
     Examples:
-
     >>> binary_search([1, 2, 3, 4], 2)
     1
 
