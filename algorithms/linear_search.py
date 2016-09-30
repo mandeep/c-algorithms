@@ -25,6 +25,9 @@ def linear_search(unordered_list, value):
     >>> linear_search([2.2, 1.1, 3.3, 5.5, 4.4], 2.2)
     0
 
+    >>> linear_search([8, 3, 233, 7845, 191, 2389], 0) is None
+    True
+
     Reference: https://en.wikipedia.org/wiki/Linear_search
     """
     for index, element in enumerate(unordered_list):
