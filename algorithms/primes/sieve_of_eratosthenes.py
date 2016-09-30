@@ -30,7 +30,7 @@ def sieve_of_eratosthenes(limit):
     Reference: https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes
     """
     multiples = set()
-    primes = []
+    primes = list()
     for number in range(2, limit+1):
         if number not in multiples:
             primes.append(number)
