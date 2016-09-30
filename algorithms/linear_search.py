@@ -11,9 +11,23 @@ def linear_search(unordered_list, value):
     there is a match, the index of the element is returned. If the
     value argument is not contained within the list, None is returned.
 
+    Examples:
+
+    >>> linear_search([2, 1, 3, 4], 3)
+    2
+
+    >>> linear_search(list(range(1, 589437)), 7383)
+    7382
+
+    >>> linear_search(['1', '3', '6', '4', '5', '2'], '5')
+    4
+
+    >>> linear_search([2.2, 1.1, 3.3, 5.5, 4.4], 2.2)
+    0
+
     Reference: https://en.wikipedia.org/wiki/Linear_search
     """
-    for i, element in enumerate(unordered_list):
+    for index, element in enumerate(unordered_list):
         if element == value:
-            return i
+            return index
     return None
