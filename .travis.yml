@@ -16,7 +16,6 @@ install:
   - pip install coveralls
   - pip install pytest
   - pip install pytest-cov
-  - pip install pytest-faulthandler
 script:
   - py.test algorithms -s -v -x --cov=./
 after_success:
