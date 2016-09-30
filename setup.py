@@ -5,5 +5,5 @@ setup(name='Algorithms',
       author='Mandeep Bhutani',
       author_email='info@mandeep.xyz',
       url='https://github.com/mandeep/Algorithms',
-      packages=['algorithms', 'algorithms.tests'],
+      packages=['algorithms']
       )
