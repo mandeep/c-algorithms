@@ -1,4 +1,4 @@
-.. image:: images/algorithms.png
+.. image:: algorithms.png
 
 |travis| |coverage| |codacy|
 
