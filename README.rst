@@ -4,9 +4,9 @@
 
 Algorithms intends to be an encyclopedia of popular and classic algorithms written
 in Python with a focus on readability. Professors and computer scientists around
-the world write code with a complete disregard for code quality and insist on naming
-variables with single letters. This library aims to present algorithms in an
-approachable fashion.
+the world write code with a complete disregard for code quality and design patterns,
+which does not lend itself to straightforward instruction. This library aims to present
+algorithms in an approachable and clear fashion.
 
 
 .. |travis| image:: https://travis-ci.org/mandeep/Algorithms.svg?branch=master
