@@ -27,10 +27,10 @@ def selection_sort(array):
     >>> selection_sort(random_list) == sorted(random_list)
     True
     """
-    for sorted in range(0, len(array)-1):
-        minimum = sorted
-        for unsorted in range(sorted+1, len(array)):
-            if array[unsorted] < array[minimum]:
-                minimum = unsorted
-        array[minimum], array[sorted] = array[sorted], array[minimum]
+    for ordered in range(0, len(array)-1):
+        minimum = ordered
+        for unordered in range(ordered+1, len(array)):
+            if array[unordered] < array[minimum]:
+                minimum = unordered
+        array[minimum], array[ordered] = array[ordered], array[minimum]
     return array
