@@ -26,6 +26,8 @@ def selection_sort(array):
     >>> random_list = random.sample(list(range(1000)), 100)
     >>> selection_sort(random_list) == sorted(random_list)
     True
+
+    Reference: https://en.wikipedia.org/wiki/Selection_sort
     """
     for ordered in range(0, len(array)-1):
         minimum = ordered
