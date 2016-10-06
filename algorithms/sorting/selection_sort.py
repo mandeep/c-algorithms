@@ -1,5 +1,5 @@
 def selection_sort(array):
-    """Sorts a list in place via selection sort and returns the sorted list.
+    """Sort a list in place via selection sort and return the sorted list.
 
     Positional argument:
     array -- a list with unordered elements
