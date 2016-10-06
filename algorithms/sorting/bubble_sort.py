@@ -1,5 +1,5 @@
 def bubble_sort(array):
-    """Given an unordered list, returns a sorted list.
+    """Sort a list in place and return the sorted list.
 
     Positional argument:
     array -- a list with unordered elements
