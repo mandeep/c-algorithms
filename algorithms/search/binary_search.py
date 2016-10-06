@@ -1,5 +1,5 @@
 def binary_search(sorted_list, value):
-    """Given a sorted list and a value, returns the value's index.
+    """Search a sorted list for the given value and return its index.
 
     Positional arguments:
     sorted_list -- a list sorted from low to high
