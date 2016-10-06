@@ -1,5 +1,5 @@
 def sieve_of_eratosthenes(limit):
-    """Given a limit, returns a list of all primes from 2 to the given limit.
+    """Calculate primes up to the given limit and returns them in a list.
 
     Positional argument:
     limit -- an integer that defines the upper bound for the list of primes
