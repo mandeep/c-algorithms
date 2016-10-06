@@ -1,5 +1,5 @@
 def insertion_sort(array):
-    """Given a list of unordered elements, returns a sorted list.
+    """Sort a list in place and return the sorted list.
 
     Positional argument:
     array -- an unordered list of elements
