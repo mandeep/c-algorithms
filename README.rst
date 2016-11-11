@@ -3,9 +3,9 @@
 |travis| |coverage| |codacy|
 
 Algorithms intends to be an encyclopedia of popular and classic algorithms written
-in Python with a focus on readability. Professors and computer scientists around
-the world write code with a complete disregard for code quality and design patterns,
-which does not lend itself to straightforward instruction. This library aims to present
+in Python with a focus on readability. Classical algorithms are still written without
+adherence to modern code quality and design patterns, which does not lend itself to
+straightforward instruction to those new to the discipline. This library aims to present
 algorithms in a clear and approachable fashion.
 
 
