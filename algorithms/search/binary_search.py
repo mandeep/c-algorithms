@@ -6,8 +6,8 @@ def binary_search(sorted_list, value):
     value -- a float, integer, or string to be found in the sorted list
 
     Analysis:
-    The first variable is set to the sorted list's first index, while the
-    last variable is set to the sorted list's last index. The middle variable
+    The variable first is set to the sorted list's first index, while the
+    variable last is set to the sorted list's last index. The middle variable
     is the sorted list's middle index. We can determine which part of the
     sorted list the value argument resides by comparing it to the element at
     the middle of the sorted list. If the value argument is less than the
