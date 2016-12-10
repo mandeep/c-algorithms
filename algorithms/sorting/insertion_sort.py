@@ -26,8 +26,8 @@ def insertion_sort(array):
 
     Reference: https://en.wikipedia.org/wiki/Insertion_sort
     """
-    for index in range(1, len(array)):
-        while index > 0 and array[index] < array[index-1]:
-            array[index], array[index-1] = array[index-1], array[index]
-            index -= 1
+    for i in range(1, len(array)):
+        while i > 0 and array[i] < array[i-1]:
+            array[i], array[i-1] = array[i-1], array[i]
+            i -= 1
     return array
