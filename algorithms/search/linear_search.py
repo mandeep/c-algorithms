@@ -29,7 +29,7 @@ def linear_search(unsorted_list, value):
 
     Reference: https://en.wikipedia.org/wiki/Linear_search
     """
-    for index, element in enumerate(unsorted_list):
+    for i, element in enumerate(unsorted_list):
         if element == value:
-            return index
+            return i
     return None
