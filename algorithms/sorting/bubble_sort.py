@@ -27,8 +27,8 @@ def bubble_sort(array):
 
     Reference: https://en.wikipedia.org/wiki/Bubble_sort
     """
-    for iteration in range(len(array)):
-        for index in range(len(array)-1):
-            if array[index] > array[index+1]:
-                array[index], array[index+1] = array[index+1], array[index]
+    for _ in range(len(array)):
+        for i in range(len(array)-1):
+            if array[i] > array[i+1]:
+                array[i], array[i+1] = array[i+1], array[i]
     return array
