@@ -29,10 +29,10 @@ def selection_sort(array):
 
     Reference: https://en.wikipedia.org/wiki/Selection_sort
     """
-    for sorted in range(0, len(array)-1):
-        minimum = sorted
-        for unsorted in range(sorted+1, len(array)):
-            if array[unsorted] < array[minimum]:
-                minimum = unsorted
-        array[minimum], array[sorted] = array[sorted], array[minimum]
+    for i in range(0, len(array)-1):
+        minimum = i
+        for j in range(i+1, len(array)):
+            if array[j] < array[minimum]:
+                minimum = j
+        array[minimum], array[i] = array[i], array[minimum]
     return array
