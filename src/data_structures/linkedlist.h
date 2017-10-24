@@ -1,3 +1,4 @@
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -124,6 +125,69 @@ void destroy_list(linked_list *list) {
         list->head = list->head->next;
         free_node(destroyed_node);
     }
+}
+
+
+void sort_list(linked_list *list) {
+    node *previous = NULL;
+    node *current = list->head;
+    while (current != NULL) {
+        node *temp = current->next;
+        current->next = previous;
+        previous = current;
+        current = temp;
+    }
+    list->head = previous;
+}
+
+
+linked_list merge_sorted_lists(linked_list *list1, linked_list *list2) {
+    linked_list merged_list;
+    initialize_list(&merged_list);
+
+    if (list1->head != NULL && list2->head == NULL) {
+        return *list1;
+    } else if (list1->head == NULL && list2->head != NULL) {
+        return *list2;
+    } else if (list1->head == NULL && list2->head == NULL) {
+        return merged_list;
+    }
+
+    while (list1->head != NULL && list2->head != NULL) {
+        if (list1->head->value < list2->head->value) {
+            insert_in_order(&merged_list, list1->head->value);
+            list1->head = list1->head->next;
+        } else {
+            insert_in_order(&merged_list, list2->head->value);
+            list2->head = list2->head->next;
+        }
+    }
+
+    if (list1->head == NULL) {
+        while (list2->head != NULL) {
+            insert_in_order(&merged_list, list2->head->value);
+            list2->head = list2->head->next;
+        }
+    } else {
+        while (list1->head != NULL) {
+            insert_in_order(&merged_list, list1->head->value);
+            list1->head = list1->head->next;
+        }
+    }
+    return merged_list;
+}
+
+
+bool is_list_sorted(linked_list *list) {
+    node *current = list->head;
+    while (current->next != NULL) {
+        if (current->value > current->next->value) {
+            return false;
+        } else {
+            current = current->next;
+        }
+    }
+    return true;
 }
 
 
