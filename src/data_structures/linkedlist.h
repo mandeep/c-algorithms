@@ -74,9 +74,9 @@ void free_node(node *n) {
 
 
 void delete_at_head(linked_list *list) {
-    node *old = list->head;
+    node *destroyed_node = list->head;
     list->head = list->head->next;
-    free_node(old);
+    free_node(destroyed_node);
 }
 
 
@@ -85,9 +85,9 @@ void delete_at_tail(linked_list *list) {
     node *current = list->head;
 
     if (list->head->next == NULL) {
-        node *old = list->head;
+        node *destroyed_node = list->head;
         list->head = NULL;
-        free_node(old);
+        free_node(destroyed_node);
     } else {
         while (current->next != NULL) {
             previous = current;
@@ -104,9 +104,9 @@ void delete_node(linked_list *list, size_t element) {
     node *current = list->head;
 
     if (list->head->value == element) {
-        node *old = list->head;
+        node *destroyed_node = list->head;
         list->head = list->head->next;
-        free_node(old);
+        free_node(destroyed_node);
     } else {
         while (current != NULL && current->value != element) {
             previous = current;
