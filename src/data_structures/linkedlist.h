@@ -128,7 +128,7 @@ void destroy_list(linked_list *list) {
 }
 
 
-void sort_list(linked_list *list) {
+void reverse_list(linked_list *list) {
     node *previous = NULL;
     node *current = list->head;
     while (current != NULL) {
