@@ -191,6 +191,17 @@ bool is_list_sorted(linked_list *list) {
 }
 
 
+size_t list_length(linked_list *list)  {
+    size_t length = 0;
+    node *current = list->head;
+    while (current != NULL) {
+        current = current->next;
+        length += 1;
+    }
+    return length;
+}
+
+
 void print_list(linked_list *list) {
     node *current = list->head;
     while (current != NULL) {
