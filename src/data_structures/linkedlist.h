@@ -139,6 +139,21 @@ void swap_nodes(linked_list *list, size_t x, size_t y) {
 }
 
 
+size_t count_node_occurences(linked_list *list, size_t number) {
+    node *current = list->head;
+    size_t count = 0;
+
+    while (current != NULL) {
+        if (current->value == number) {
+            count += 1;
+        }
+        current = current->next;
+    }
+
+    return count;
+}
+
+
 void free_node(node *n) {
     if (n != NULL) {
         free(n);
