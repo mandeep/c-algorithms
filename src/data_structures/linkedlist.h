@@ -222,6 +222,24 @@ void delete_node(linked_list *list, size_t element) {
 }
 
 
+void remove_duplicates(linked_list *list) {
+    node *current = list->head;
+    node *next = list->head->next;
+
+    if (current != NULL) {
+        while (current->next != NULL) {
+            if (current->value == next->value) {
+                next = current->next->next;
+                free_node(current->next);
+                current->next = next;
+            } else {
+                current = current->next;
+            }
+        }
+    }
+}
+
+
 void destroy_list(linked_list *list) {
     while (list->head != NULL) {
         node *destroyed_node = list->head;
