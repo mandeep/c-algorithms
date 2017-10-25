@@ -97,6 +97,23 @@ void insert_in_order(linked_list *list, size_t number) {
 }
 
 
+node *get_node(linked_list *list, size_t index) {
+    node *current = list->head;
+    size_t count = 0;
+
+    if (index == 0) {
+        return current;
+    }
+
+    while (count < index && current->next != NULL) {
+        current = current->next;
+        count += 1;
+    }
+
+    return current;
+}
+
+
 void free_node(node *n) {
     if (n != NULL) {
         free(n);
