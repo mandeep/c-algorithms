@@ -32,6 +32,7 @@ void insert_at_tail(linked_list *list, size_t number) {
     } else {
         list->tail->next = np;
     }
+
     list->tail = np;
 }
 
@@ -41,6 +42,36 @@ void insert_at_head(linked_list *list, size_t number) {
     np->value = number;
     np->next = list->head;
     list->head = np;
+}
+
+
+void insert_at_position(linked_list *list, size_t index, size_t number) {
+    node *np = malloc(sizeof(node));
+    np->value = number;
+    node *previous = NULL;
+    node *head = list->head;
+
+    if (index == 0) {
+        np->next = list->head;
+        list->head = np;
+    } else {
+        size_t count = 0;
+        while (count < index && list->head->next != NULL) {
+            previous = list->head;
+            list->head = list->head->next;
+            count += 1;
+        }
+
+        if (list->head->next == NULL) {
+            previous->next = np;
+            np->next = NULL;
+        } else {
+            previous->next = np;
+            np->next = list->head;
+        }
+
+        list->head = head;
+    }
 }
 
 
@@ -131,12 +162,14 @@ void destroy_list(linked_list *list) {
 void reverse_list(linked_list *list) {
     node *previous = NULL;
     node *current = list->head;
+
     while (current != NULL) {
         node *temp = current->next;
         current->next = previous;
         previous = current;
         current = temp;
     }
+
     list->head = previous;
 }
 
@@ -174,12 +207,14 @@ linked_list merge_sorted_lists(linked_list *list1, linked_list *list2) {
             list1->head = list1->head->next;
         }
     }
+
     return merged_list;
 }
 
 
 bool is_list_sorted(linked_list *list) {
     node *current = list->head;
+
     while (current->next != NULL) {
         if (current->value > current->next->value) {
             return false;
@@ -187,6 +222,7 @@ bool is_list_sorted(linked_list *list) {
             current = current->next;
         }
     }
+
     return true;
 }
 
@@ -194,19 +230,23 @@ bool is_list_sorted(linked_list *list) {
 size_t list_length(linked_list *list)  {
     size_t length = 0;
     node *current = list->head;
+
     while (current != NULL) {
         current = current->next;
         length += 1;
     }
+
     return length;
 }
 
 
 void print_list(linked_list *list) {
     node *current = list->head;
+
     while (current != NULL) {
         printf("%zu ", current->value);
         current = current->next;
     }
+
     printf("\n");
 }
