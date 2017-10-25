@@ -115,27 +115,39 @@ node *get_node(linked_list *list, size_t index) {
 
 
 void swap_nodes(linked_list *list, size_t x, size_t y) {
-    node *current = list->head;
-    node *previous = NULL;
+    node *current_y = list->head;
+    node *current_x = list->head;
     node *previous_x = NULL;
-    node *current_x = NULL;
+    node *previous_y = NULL;
 
-    while (current != NULL && current->value != y) {
-        
-        if (current->next->value == x) {
-            previous_x = current;
-            current_x = current->next;
+    if (x != y) {
+
+        while (current_x != NULL && current_x->value != x) {
+                previous_x = current_x;
+                current_x = current_x->next;
         }
-        
-        previous = current;
-        current = current->next;
-    }
 
-    node *temp = current->next;
-    previous_x->next = current;
-    current->next = current_x->next;
-    previous->next = current_x;
-    current_x->next = temp;    
+        while (current_y != NULL && current_y->value != y) {
+                previous_y = current_y;
+                current_y = current_y->next;
+        }
+
+        if (previous_x != NULL) {
+            previous_x->next = current_y;
+        } else {
+            list->head = current_y;
+        }
+
+        if (previous_y != NULL) {
+            previous_y->next = current_x;
+        } else {
+            list->head = current_x;
+        }
+
+        node *temp = current_y->next;
+        current_y->next = current_x->next;
+        current_x->next = temp;    
+    }
 }
 
 
