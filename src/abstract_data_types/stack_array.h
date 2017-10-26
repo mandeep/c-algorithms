@@ -9,8 +9,8 @@ typedef struct stack {
 } stack;
 
 
-stack *initialize_stack(void) {
-    stack *st = malloc(sizeof(stack));
+stack *initialize_stack(size_t size) {
+    stack *st = malloc(sizeof(int) * size);
     st->top = -1;
 
     return st;
