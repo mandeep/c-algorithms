@@ -9,8 +9,8 @@ typedef struct stack {
 } stack;
 
 
-stack *initialize_stack(int size) {
-    stack *st = malloc(sizeof(int) * size);
+stack *initialize_stack(void) {
+    stack *st = malloc(sizeof(stack));
     st->top = -1;
 
     return st;
@@ -32,7 +32,11 @@ int pop(stack *st) {
 
 
 int peek(stack *st) {
-    return st->array[st->top];
+    if (st->top != -1) {
+        return st->array[st->top];
+    } else {
+        return 0;
+    }
 }
 
 
