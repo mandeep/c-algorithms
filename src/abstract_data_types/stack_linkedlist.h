@@ -14,10 +14,10 @@ typedef struct stack {
 } stack;
 
 
-stack initialize_stack(size_t size) {
+stack *initialize_stack(size_t size) {
     stack *st = malloc(sizeof(size_t) * size);
     st->top = NULL;
-    return *st;
+    return st;
 }
 
 
