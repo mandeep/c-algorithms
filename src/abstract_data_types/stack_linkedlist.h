@@ -17,6 +17,7 @@ typedef struct stack {
 stack *initialize_stack(size_t size) {
     stack *st = malloc(sizeof(size_t) * size);
     st->top = NULL;
+
     return st;
 }
 
@@ -60,5 +61,6 @@ size_t peek(stack *st) {
     if (current != NULL) {
         return st->top->value;
     }
+
     return 0;
 }
