@@ -25,14 +25,16 @@ void push(stack *st, int number) {
 
 int pop(stack *st) {
     int top_element = st->array[st->top];
-    st->top -= 1;
+    if (st->top > -1) {
+        st->top -= 1;    
+    }
 
     return top_element;
 }
 
 
 int peek(stack *st) {
-    if (st->top != -1) {
+    if (st->top <= -1) {
         return st->array[st->top];
     } else {
         return 0;
