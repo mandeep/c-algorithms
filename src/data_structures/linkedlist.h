@@ -222,7 +222,7 @@ void delete_node(linked_list *list, size_t element) {
 }
 
 
-void remove_duplicates(linked_list *list) {
+void remove_sorted_duplicates(linked_list *list) {
     node *current = list->head;
     node *subsequent = list->head->next;
 
