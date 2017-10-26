@@ -26,6 +26,7 @@ void push(stack *st, int number) {
 int pop(stack *st) {
     int top_element = st->array[st->top];
     st->top -= 1;
+
     return top_element;
 }
 
