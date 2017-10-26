@@ -30,7 +30,7 @@ int pop(stack *st) {
 }
 
 
-size_t peek(stack *st) {
+int peek(stack *st) {
     return st->array[st->top];
 }
 
