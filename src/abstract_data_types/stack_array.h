@@ -64,6 +64,7 @@ int pop(stack *st) {
     return top_element;
 }
 
+
 /**
 * peek - view the top element of the stack
 *
@@ -78,6 +79,7 @@ int peek(stack *st) {
         return 0;
     }
 }
+
 
 /**
 * is_empty - determine whether or not the stack is empty
