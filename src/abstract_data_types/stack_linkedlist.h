@@ -118,3 +118,24 @@ size_t peek(stack *st) {
 
     return 0;
 }
+
+
+/**
+* destroy_stack - free the memory that was allocated for the stack
+*
+* @st: the stack to destroy
+*
+* Returns: void
+*/
+void destroy_list(stack *st) {
+    while (st->top != NULL) {
+        node *destroyed_node = st->top;
+        st->top = st->top->next;
+        free_node(destroyed_node);
+    }
+
+    if (st != NULL) {
+        free(st);
+        st = NULL;
+    }
+}
