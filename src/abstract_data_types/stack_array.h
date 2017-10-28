@@ -91,3 +91,18 @@ int peek(stack *st) {
 bool is_empty(stack *st) {
     return st->top == -1;
 }
+
+
+/**
+* destroy_stack - free the memory that was allocated for the stack
+*
+* @st: the stack to destroy
+*
+* Returns: void
+*/
+void destroy_stack(stack *st) {
+    if (st != NULL) {
+        free(st);
+        st = NULL;
+    }
+}
