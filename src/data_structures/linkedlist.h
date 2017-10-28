@@ -16,9 +16,13 @@ typedef struct linked_list {
 } linked_list;
 
 
-void initialize_list(linked_list *list) {
+linked_list *initialize_list(void) {
+    linked_list *list = malloc(sizeof(node) * 2);
+
     list->head = NULL;
     list->tail = NULL;
+
+    return list;
 }
 
 
@@ -169,9 +173,9 @@ size_t count_node_occurences(linked_list *list, size_t number) {
 }
 
 
-void free_node(node *n) {
-    if (n != NULL) {
-        free(n);
+void free_node(node **n) {
+    if (*n != NULL && n != NULL) {
+        free(*n);
         n = NULL;
     }
 }
@@ -180,7 +184,7 @@ void free_node(node *n) {
 void delete_at_head(linked_list *list) {
     node *destroyed_node = list->head;
     list->head = list->head->next;
-    free_node(destroyed_node);
+    free_node(&destroyed_node);
 }
 
 
@@ -191,14 +195,14 @@ void delete_at_tail(linked_list *list) {
     if (list->head->next == NULL) {
         node *destroyed_node = list->head;
         list->head = NULL;
-        free_node(destroyed_node);
+        free_node(&destroyed_node);
     } else {
         while (current->next != NULL) {
             previous = current;
             current = current->next;
         }
         previous->next = NULL;
-        free_node(current);
+        free_node(&current);
     }
 }
 
@@ -210,14 +214,14 @@ void delete_node(linked_list *list, size_t element) {
     if (list->head->value == element) {
         node *destroyed_node = list->head;
         list->head = list->head->next;
-        free_node(destroyed_node);
+        free_node(&destroyed_node);
     } else {
         while (current != NULL && current->value != element) {
             previous = current;
             current = current->next;
         }
         previous->next = current->next;
-        free_node(current);
+        free_node(&current);
     }
 }
 
@@ -232,7 +236,7 @@ void remove_sorted_duplicates(linked_list *list) {
                 subsequent = current->next->next;
                 node *destroyed_node = current->next;
                 current->next = subsequent;
-                free_node(destroyed_node);
+                free_node(&destroyed_node);
             } else {
                 current = current->next;
             }
@@ -241,11 +245,16 @@ void remove_sorted_duplicates(linked_list *list) {
 }
 
 
-void destroy_list(linked_list *list) {
-    while (list->head != NULL) {
-        node *destroyed_node = list->head;
-        list->head = list->head->next;
-        free_node(destroyed_node);
+void destroy_list(linked_list **list) {
+    while ((*list)->head != NULL) {
+        node *destroyed_node = (*list)->head;
+        (*list)->head = (*list)->head->next;
+        free_node(&destroyed_node);
+    }
+
+    if (*list != NULL && list != NULL) {
+        free(*list);
+        list = NULL;
     }
 }
 
@@ -265,36 +274,35 @@ void reverse_list(linked_list *list) {
 }
 
 
-linked_list merge_sorted_lists(linked_list *list1, linked_list *list2) {
-    linked_list merged_list;
-    initialize_list(&merged_list);
+linked_list *merge_sorted_lists(linked_list *list1, linked_list *list2) {
+    linked_list *merged_list = initialize_list();
 
     if (list1->head != NULL && list2->head == NULL) {
-        return *list1;
+        return list1;
     } else if (list1->head == NULL && list2->head != NULL) {
-        return *list2;
+        return list2;
     } else if (list1->head == NULL && list2->head == NULL) {
         return merged_list;
     }
 
     while (list1->head != NULL && list2->head != NULL) {
         if (list1->head->value < list2->head->value) {
-            insert_in_order(&merged_list, list1->head->value);
+            insert_in_order(merged_list, list1->head->value);
             list1->head = list1->head->next;
         } else {
-            insert_in_order(&merged_list, list2->head->value);
+            insert_in_order(merged_list, list2->head->value);
             list2->head = list2->head->next;
         }
     }
 
     if (list1->head == NULL) {
         while (list2->head != NULL) {
-            insert_in_order(&merged_list, list2->head->value);
+            insert_in_order(merged_list, list2->head->value);
             list2->head = list2->head->next;
         }
     } else {
         while (list1->head != NULL) {
-            insert_in_order(&merged_list, list1->head->value);
+            insert_in_order(merged_list, list1->head->value);
             list1->head = list1->head->next;
         }
     }
