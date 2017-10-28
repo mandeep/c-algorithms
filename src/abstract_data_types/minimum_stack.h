@@ -125,8 +125,9 @@ int minimum(minimum_stack *stack) {
 *
 * Returns: void
 */
-void free_stack(minimum_stack *stack) {
-    if (stack != NULL) {
-        free(stack);    }
+void destroy_stack(minimum_stack **stack) {
+    if (*stack != NULL && stack != NULL) {
+        free(*stack);
         stack = NULL;
+    }
 }
