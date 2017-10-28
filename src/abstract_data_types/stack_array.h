@@ -100,8 +100,8 @@ bool is_empty(stack *st) {
 *
 * Returns: void
 */
-void destroy_stack(stack *st) {
-    if (st != NULL) {
+void destroy_stack(stack **st) {
+    if (st != NULL && *st != NULL) {
         free(st);
         st = NULL;
     }

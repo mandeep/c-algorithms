@@ -47,10 +47,10 @@ stack *initialize_stack(size_t size) {
 *
 * Returns: void
 */
-void free_node(node *n) {
-    if (n != NULL) {
-        free(n);
-        n = NULL;
+void free_node(node **n) {
+    if (n != NULL && *n != NULL) {
+        free(*n);
+        *n = NULL;
     }
 }
 
@@ -83,7 +83,7 @@ size_t pop(stack *st) {
         size_t value = st->top->value;
         node *destroyed_node = st->top;
         st->top = st->top->next;
-        free_node(destroyed_node);
+        free_node(&destroyed_node);
         return value;
     } else {
         return 0;
@@ -125,17 +125,20 @@ size_t peek(stack *st) {
 *
 * @st: the stack to destroy
 *
+* Each node in the stack needs to be freed since memory was allocated
+* for the nodes. Once the nodes are freed, the memory for the stack
+* can be freed.
+* 
 * Returns: void
 */
-void destroy_list(stack *st) {
-    while (st->top != NULL) {
-        node *destroyed_node = st->top;
-        st->top = st->top->next;
-        free_node(destroyed_node);
+void destroy_list(stack **st) {
+    while ((*st)->top != NULL) {
+        node *destroyed_node = (*st)->top;
+        (*st)->top = (*st)->top->next;
+        free_node(&destroyed_node);
     }
-
-    if (st != NULL) {
-        free(st);
+    if (*st != NULL && st != NULL) {
+        free(*st);
         st = NULL;
     }
 }
