@@ -167,6 +167,28 @@ void insert_in_order(linked_list *list, size_t value) {
 
 
 /**
+* insert_double_link - insert a node with a previous and next pointer into a doubly linked list
+*
+* @list - the linked_list in which to insert the node
+* @value - the value to insert into the linked list
+*
+* Returns: void
+*/
+void insert_double_link(linked_list *list, size_t value) {
+    node *np = malloc(sizeof(node));
+    np->value = value;
+    np->next = list->head;
+    np->previous = NULL;
+
+    if (list->head != NULL) {
+        list->head->previous = np;
+    }
+
+    list->head = np;
+}
+
+
+/**
 * get_node - get the node at the given index
 *
 * @list: the linked_list in which to retrieve the node
