@@ -45,7 +45,7 @@ typedef struct minimum_stack {
 *
 * Returns: the newly initialized minimum_stack
 */
-minimum_stack* initialize_stack(size_t size) {
+minimum_stack *initialize_stack(size_t size) {
     minimum_stack *stack = malloc(sizeof(stack_data) * size);
     stack->top = -1;
     
@@ -61,7 +61,7 @@ minimum_stack* initialize_stack(size_t size) {
 *
 * Returns: void
 */
-void push(minimum_stack* stack, int value) {
+void push(minimum_stack *stack, int value) {
     stack_data element;
     element.value = value;
 
@@ -83,7 +83,7 @@ void push(minimum_stack* stack, int value) {
 *
 * Returns: the element removed from the stack
 */
-int pop(minimum_stack* stack) {
+int pop(minimum_stack *stack) {
     int top_element = stack->array[stack->top].value;
 
     if (stack->top > -1) {
@@ -101,7 +101,7 @@ int pop(minimum_stack* stack) {
 *
 * Returns: the value of the last element added to the stack
 */
-int top(minimum_stack* stack) {
+int top(minimum_stack *stack) {
     return stack->array[stack->top].value;
 }
 
@@ -113,7 +113,7 @@ int top(minimum_stack* stack) {
 *
 * Returns: the minimum value of the stack
 */
-int minimum(minimum_stack* stack) {
+int minimum(minimum_stack *stack) {
     return stack->array[stack->top].minimum;
 }
 
@@ -125,7 +125,7 @@ int minimum(minimum_stack* stack) {
 *
 * Returns: void
 */
-void free_stack(minimum_stack* stack) {
+void free_stack(minimum_stack *stack) {
     if (stack != NULL) {
         free(stack);    }
         stack = NULL;
