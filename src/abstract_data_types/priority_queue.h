@@ -56,7 +56,7 @@ queue *initialize_queue(void) {
 
 
 /**
-* enqueue - add an element to the end of the priority queue
+* enqueue - add an element to the priority queue with placement according to its priority
 *
 * @queue - the priority queue in which to add the element
 * @value - the value to add to the priority queue
@@ -124,7 +124,7 @@ void dequeue(queue *q) {
 
 
 /**
-* dequeue - remove an element from the front of the priority queue
+* dequeue - remove the element with the given priority from the priority queue
 *
 * @queue - the priority queue in which to remove the element
 *
