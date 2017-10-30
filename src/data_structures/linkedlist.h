@@ -380,7 +380,7 @@ void remove_sorted_duplicates(linked_list *list) {
 
     if (current != NULL) {
         while (current->next != NULL) {
-            if (current->value == subsequent->value) {
+            if (current->value == current->next->value) {
                 subsequent = current->next->next;
                 node *destroyed_node = current->next;
                 current->next = subsequent;
