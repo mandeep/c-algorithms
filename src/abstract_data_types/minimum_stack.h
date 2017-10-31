@@ -1,6 +1,6 @@
 /**
-* The minimum_stack is a stack abstract data type that holds data
-* of the stack_data data type. The stack_data data type contains
+* The minimum_stack is an abstract data type that holds data
+* of the tuple data type. The tuple data type contains
 * a value and a mimimum. The value is the value of the int to
 * insert into the stack. The minimum is the minimum value that
 * has been added to the stack. By keeping track of the minimum
@@ -13,17 +13,17 @@
 
 
 /**
-* stack_data - the data to use in the minimum_stack
+* tuple - the data to use in the minimum_stack
 *
 * @value: the value to hold in the data type
 * @minimum: the minimum seen so far in the stack
 *
 * Acts as a tuple containing the value and the minimum of the stack
 */
-typedef struct stack_data {
+typedef struct tuple {
     int value;
     int minimum;
-} stack_data;
+} tuple;
 
 
 /**
@@ -34,7 +34,7 @@ typedef struct stack_data {
 */
 typedef struct minimum_stack {
     int top;
-    stack_data array[];
+    tuple array[];
 } minimum_stack;
 
 
@@ -46,7 +46,7 @@ typedef struct minimum_stack {
 * Returns: the newly initialized minimum_stack
 */
 minimum_stack *initialize_stack(size_t size) {
-    minimum_stack *stack = malloc(sizeof(stack_data) * size);
+    minimum_stack *stack = malloc(sizeof(tuple) * size);
     stack->top = -1;
     
     return stack;
@@ -62,7 +62,7 @@ minimum_stack *initialize_stack(size_t size) {
 * Returns: void
 */
 void push(minimum_stack *stack, int value) {
-    stack_data element;
+    tuple element;
     element.value = value;
 
     if (stack->top == -1 || value <= stack->array[stack->top].minimum) {
