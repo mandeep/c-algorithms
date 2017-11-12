@@ -84,13 +84,11 @@ void push(minimum_stack *stack, int value) {
 * Returns: the element removed from the stack
 */
 int pop(minimum_stack *stack) {
-    int top_element = stack->array[stack->top].value;
-
     if (stack->top > -1) {
         stack->top -= 1;
     }
 
-    return top_element;
+    return stack->array[stack->top].value;
 }
 
 
