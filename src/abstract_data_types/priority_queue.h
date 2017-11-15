@@ -1,6 +1,7 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdint.h>
 
 
 /**
@@ -11,7 +12,7 @@
 * @next: the next node to link to when creating a singly linked list
 */
 typedef struct node {
-    size_t value;
+    void *value;
     size_t priority;
     struct node *next;
 } node;
@@ -69,7 +70,7 @@ queue *initialize_queue(void) {
 * of the priority queue with the lowest priority nodes appearing
 * towards the end of the priority queue.
 */
-void enqueue(queue *q, size_t value, size_t priority) {
+void enqueue(queue *q, void *value, size_t priority) {
     node *np = malloc(sizeof(node));
     np->value = value;
     np->priority = priority;
@@ -190,12 +191,16 @@ void destroy_queue(queue **q) {
 * @queue - the priority queue whose contents to display
 *
 * Returns: void
+*
+* printf casts the current->value to intptr_t in order
+* to print the value. The cast needs to be changed if
+* the value is a type that can't be cast to intptr_t.
 */
 void print_list(queue *q) {
     node *current = q->list->head;
     
     while (current != NULL) {
-        printf("%zu ", current->value);
+        printf("%zu ", (intptr_t) current->value);
         current = current->next;
     }
     printf("\n");
