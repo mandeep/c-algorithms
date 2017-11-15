@@ -11,7 +11,7 @@
 * @previous: the previous node to link if creating a doubly linked list
 */
 typedef struct node {
-    size_t value;
+    void *value;
     struct node *next;
     struct node *previous;
 } node;
@@ -57,7 +57,7 @@ linked_list *initialize_list(void) {
 * and tail node separately. This method is not to be used with
 * other insertion methods.
 */
-void insert_at_tail(linked_list *list, size_t value) {
+void insert_at_tail(linked_list *list, void *value) {
     node *np = malloc(sizeof(node));
     np->value = value;
     np->next = NULL;
@@ -85,7 +85,7 @@ void insert_at_tail(linked_list *list, size_t value) {
 * linked list. This method is not to be used with other insertion
 * methods.
 */
-void insert_at_head(linked_list *list, size_t value) {
+void insert_at_head(linked_list *list, void *value) {
     node *np = malloc(sizeof(node));
     np->value = value;
     np->next = list->head;
@@ -104,7 +104,7 @@ void insert_at_head(linked_list *list, size_t value) {
 *
 * This method is not to be used with other insertion methods.
 */
-void insert_at_position(linked_list *list, size_t value, size_t index) {
+void insert_at_position(linked_list *list, void *value, size_t index) {
     node *np = malloc(sizeof(node));
     np->value = value;
     node *previous = NULL;
@@ -144,7 +144,7 @@ void insert_at_position(linked_list *list, size_t value, size_t index) {
 *
 * This method is not to be used with other insertion methods.
 */
-void insert_in_order(linked_list *list, size_t value) {
+void insert_in_order(linked_list *list, void *value) {
     node *np = malloc(sizeof(node));
     np->value = value;
     np->next = NULL;
@@ -174,7 +174,7 @@ void insert_in_order(linked_list *list, size_t value) {
 *
 * Returns: void
 */
-void insert_double_link(linked_list *list, size_t value) {
+void insert_double_link(linked_list *list, void *value) {
     node *np = malloc(sizeof(node));
     np->value = value;
     np->next = list->head;
@@ -222,7 +222,7 @@ node *get_node(linked_list *list, size_t index) {
 *
 * Returns: void
 */
-void swap_nodes(linked_list *list, size_t x, size_t y) {
+void swap_nodes(linked_list *list, void *x, void *y) {
     node *current_y = list->head;
     node *current_x = list->head;
     node *previous_x = NULL;
@@ -270,7 +270,7 @@ void swap_nodes(linked_list *list, size_t x, size_t y) {
 *
 * Returns: void
 */
-size_t count_node_occurences(linked_list *list, size_t value) {
+size_t count_node_occurences(linked_list *list, void *value) {
     node *current = list->head;
     size_t count = 0;
 
@@ -348,7 +348,7 @@ void delete_at_tail(linked_list *list) {
 *
 * Returns: void
 */
-void delete_node(linked_list *list, size_t value) {
+void delete_node(linked_list *list, void *value) {
     node *previous = NULL;
     node *current = list->head;
 
@@ -529,12 +529,16 @@ size_t list_length(linked_list *list)  {
 * @list: the linked_list whose values to print
 *
 * Returns: void
+*
+* printf casts the current->value to size_t in order
+* to print the value. The cast needs to be changed if
+* the value is a type that can't be cast to size_t.
 */
 void print_list(linked_list *list) {
     node *current = list->head;
 
     while (current != NULL) {
-        printf("%zu ", current->value);
+        printf("%zu ", (size_t) current->value);
         current = current->next;
     }
 
