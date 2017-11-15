@@ -1,6 +1,7 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdint.h>
 
 
 /**
@@ -10,7 +11,7 @@
 * @next: the next node to link to when creating a singly linked list
 */
 typedef struct node {
-    size_t value;
+    void *value;
     struct node *next;
 } node;
 
@@ -61,7 +62,7 @@ queue *initialize_queue(void) {
 *
 * Returns: void
 */
-void push(queue *q, size_t value) {
+void push(queue *q, void *value) {
     node *np = malloc(sizeof(node));
     np->value = value;
     np->next = NULL;
@@ -84,7 +85,7 @@ void push(queue *q, size_t value) {
 *
 * Returns: void
 */
-void pushleft(queue *q, size_t value) {
+void pushleft(queue *q, void *value) {
     node *np = malloc(sizeof(node));
     np->value = value;
     np->next = q->list->head;
@@ -114,11 +115,11 @@ void free_node(node **n) {
 *
 * Returns: the value of the node removed from the queue
 */
-size_t pop(queue *q) {
+void *pop(queue *q) {
     node *previous = NULL;
     node *current = q->list->head;
 
-    size_t value = current->value;
+    void *value = current->value;
 
     if (current->next == NULL) {
         node *destroyed_node = current;
@@ -146,8 +147,8 @@ size_t pop(queue *q) {
 *
 * Returns: the value of the node removed from the queue
 */
-size_t popleft(queue *q) {
-    size_t value = q->list->head->value;
+void *popleft(queue *q) {
+    void *value = q->list->head->value;
 
     node *destroyed_node = q->list->head;
 
@@ -166,7 +167,7 @@ size_t popleft(queue *q) {
 *
 * Returns: void
 */
-void remove_value(queue *q, size_t value) {
+void remove_value(queue *q, void *value) {
     node *previous = NULL;
     node *current = q->list->head;
 
@@ -204,10 +205,11 @@ size_t length(queue *q) {
 * count - the number of times a value occurs in the queue
 *
 * @queue - the queue whose occurrences to count for the given value
+* @value - the value to count occurrences of
 *
 * Returns: the count of the occurrences of the given value
 */
-size_t count(queue *q, size_t value) {
+size_t count(queue *q, void *value) {
     node *current = q->list->head;
     size_t count = 0;
 
@@ -259,7 +261,7 @@ void print_queue(queue *q) {
     node *current = q->list->head;
 
     while (current != NULL) {
-        printf("%zu ", current->value);
+        printf("%zu ", (intptr_t) current->value);
         current = current->next;
     }
 
