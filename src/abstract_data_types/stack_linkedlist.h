@@ -10,7 +10,7 @@
 * @next: pointer to the next link in the linked list
 */
 typedef struct node {
-    size_t value;
+    void *value;
     struct node *next;
 } node;
 
@@ -63,7 +63,7 @@ void free_node(node **n) {
 *
 * Returns: void
 */
-void push(stack *st, size_t value) {
+void push(stack *st, void *value) {
     node *np = malloc(sizeof(node));
     np->value = value;
     np->next = st->top;
@@ -78,9 +78,9 @@ void push(stack *st, size_t value) {
 *
 * Returns: the element removed from the top of the stack 
 */
-size_t pop(stack *st) {
+void *pop(stack *st) {
     if (st->top != NULL) {
-        size_t value = st->top->value;
+        void *value = st->top->value;
         node *destroyed_node = st->top;
         st->top = st->top->next;
         free_node(&destroyed_node);
@@ -110,7 +110,7 @@ bool is_empty(stack *st) {
 *
 * Returns: the value of the top element of the stack
 */
-size_t peek(stack *st) {
+void *peek(stack *st) {
     node *current = st->top;
     if (current != NULL) {
         return st->top->value;
