@@ -1,7 +1,7 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <stdint.h>
 
 /**
 * node - node data type to be used with the linked list
@@ -10,7 +10,7 @@
 * @next: the next node to link to when creating a singly linked list
 */
 typedef struct node {
-    size_t value;
+    void *value;
     struct node *next;
 } node;
 
@@ -61,7 +61,7 @@ queue *initialize_queue(void) {
 *
 * Returns: void
 */
-void enqueue(queue *q, size_t value) {
+void enqueue(queue *q, void *value) {
     node *np = malloc(sizeof(node));
     np->value = value;
     np->next = NULL;
@@ -149,12 +149,16 @@ void destroy_queue(queue **q) {
 * @queue - the queue whose contents to display
 *
 * Returns: void
+*
+* printf casts the current->value to intptr_t in order
+* to print the value. The cast needs to be changed if
+* the value is a type that can't be cast to intptr_t.
 */
 void print_list(queue *q) {
     node *current = q->list->head;
     
     while (current != NULL) {
-        printf("%zu ", current->value);
+        printf("%zu ", (intptr_t) current->value);
         current = current->next;
     }
     printf("\n");
