@@ -21,8 +21,8 @@
 * Acts as a tuple containing the value and the minimum of the stack
 */
 typedef struct tuple {
-    int value;
-    int minimum;
+    void *value;
+    void *minimum;
 } tuple;
 
 
@@ -61,7 +61,7 @@ minimum_stack *initialize_stack(size_t size) {
 *
 * Returns: void
 */
-void push(minimum_stack *stack, int value) {
+void push(minimum_stack *stack, void *value) {
     tuple element;
     element.value = value;
 
@@ -83,7 +83,7 @@ void push(minimum_stack *stack, int value) {
 *
 * Returns: the element removed from the stack
 */
-int pop(minimum_stack *stack) {
+void *pop(minimum_stack *stack) {
     if (stack->top > -1) {
         stack->top -= 1;
     }
@@ -99,7 +99,7 @@ int pop(minimum_stack *stack) {
 *
 * Returns: the value of the last element added to the stack
 */
-int top(minimum_stack *stack) {
+void *top(minimum_stack *stack) {
     return stack->array[stack->top].value;
 }
 
@@ -111,7 +111,7 @@ int top(minimum_stack *stack) {
 *
 * Returns: the minimum value of the stack
 */
-int minimum(minimum_stack *stack) {
+void *minimum(minimum_stack *stack) {
     return stack->array[stack->top].minimum;
 }
 
