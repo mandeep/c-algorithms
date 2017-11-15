@@ -111,8 +111,7 @@ bool is_empty(stack *st) {
 * Returns: the value of the top element of the stack
 */
 void *peek(stack *st) {
-    node *current = st->top;
-    if (current != NULL) {
+    if (st->top != NULL) {
         return st->top->value;
     }
 
