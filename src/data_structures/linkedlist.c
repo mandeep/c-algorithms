@@ -2,31 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
-/**
-* node - node data type to be used with the linked list
-*
-* @value: the element to hold in the node
-* @next: the next node to link to when creating a singly linked list
-* @previous: the previous node to link if creating a doubly linked list
-*/
-typedef struct node {
-    void *value;
-    struct node *next;
-    struct node *previous;
-} node;
-
-
-/**
-* linked_list - the linked_list data structure that holds nodes of data
-*
-* @head: the head node of the linked list
-* @tail: the tail node of the linked list (used when keeping track of the last node) 
-*/
-typedef struct linked_list {
-    node *head;
-    node *tail;
-} linked_list;
+#include "linkedlist.h"
 
 
 /**

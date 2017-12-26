@@ -2,27 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
-/**
-* node - data type that serves as the basis of the linked list
-*
-* @value: the value to hold in the node
-* @next: pointer to the next link in the linked list
-*/
-typedef struct node {
-    void *value;
-    struct node *next;
-} node;
-
-
-/**
-* stack - abstract data type that holds a collection of elements
-*
-* @top: the node at the top of the stack
-*/
-typedef struct stack {
-     node *top;
-} stack;
+#include "stack_linkedlist.h"
 
 
 /**
