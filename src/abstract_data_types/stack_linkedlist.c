@@ -130,7 +130,7 @@ void *peek(stack *st) {
 * 
 * Returns: void
 */
-void destroy_list(stack **st) {
+void destroy_stack(stack **st) {
     while ((*st)->top != NULL) {
         node *destroyed_node = (*st)->top;
         (*st)->top = (*st)->top->next;
