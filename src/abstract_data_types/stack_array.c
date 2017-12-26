@@ -2,17 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
-/**
-* stack - abstract data type that holds a collection of elements
-*
-* @top: the index of the element at the top of the stack
-* @array: an array in which to store the stack's elements
-*/
-typedef struct stack {
-    int top;
-    int array[];
-} stack;
+#include "stack_array.h"
 
 
 /**
@@ -26,8 +16,8 @@ typedef struct stack {
 * to be added to the stack, top is incrmented by 1. Thus, the first
 * element to be added to the stack has an index of 0.
 */
-stack *initialize_stack(size_t size) {
-    stack *st = malloc(sizeof(int) * size);
+stack *initialize_stack(size_t capacity) {
+    stack *st = malloc(sizeof(int) * capacity);
     st->top = -1;
 
     return st;
@@ -102,7 +92,7 @@ bool is_empty(stack *st) {
 */
 void destroy_stack(stack **st) {
     if (st != NULL && *st != NULL) {
-        free(st);
+        free(*st);
         st = NULL;
     }
 }
