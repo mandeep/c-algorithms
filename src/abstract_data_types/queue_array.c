@@ -2,21 +2,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-
-/**
-* queue - array based abstract data type with FIFO properties
-*
-* @head - the index of the front of the queue
-* @tail - the index of the end of the queue
-* @capacity - the number of elements to be held in the queue
-* @array - the array that will hold the queue's elements
-*/
-typedef struct queue {
-    int head;
-    int tail;
-    int capacity;
-    int array[];
-} queue;
+#include "queue_array.h"
 
 
 /**
@@ -26,7 +12,7 @@ typedef struct queue {
 *
 * Returns: the initialized queue
 */
-queue *initialize_queue(int capacity) {
+queue *initialize_queue(size_t capacity) {
     queue *q = malloc(sizeof(queue) * capacity);
     q->head = 0;
     q->tail = 0;
