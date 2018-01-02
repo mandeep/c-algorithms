@@ -174,11 +174,8 @@ void insert_double_link(linked_list *list, void *value) {
 */
 node *get_node(linked_list *list, size_t index) {
     node *current = list->head;
+    
     size_t count = 0;
-
-    if (index == 0) {
-        return current;
-    }
 
     while (count < index && current->next != NULL) {
         current = current->next;
