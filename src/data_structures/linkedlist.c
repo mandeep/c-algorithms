@@ -83,29 +83,33 @@ void insert_at_head(linked_list *list, void *value) {
 void insert_at_position(linked_list *list, void *value, size_t index) {
     node *np = malloc(sizeof(node));
     np->value = value;
-    node *previous = NULL;
-    node *head = list->head;
 
-    if (index == 0) {
-        np->next = list->head;
-        list->head = np;
-    } else {
-        size_t count = 0;
-        while (count < index && list->head->next != NULL) {
-            previous = list->head;
-            list->head = list->head->next;
+    node *previous = NULL;
+    node *current = list->head;
+
+    size_t count = 0;
+
+    if (current != NULL) {
+        while (current->next != NULL && count < index) {
+            previous = current;
+            current = current->next;
             count += 1;
         }
-
-        if (list->head->next == NULL) {
-            previous->next = np;
+        if (index == 0) {
+            np->next = list->head;
+            list->head = np;
+        } else if (current->next == NULL && index == count + 1) {
+            current->next = np;
             np->next = NULL;
+        } else if (index > count + 1) {
+            printf("Cannot insert into index %zu as the previous index does not contain a node\n", index);
         } else {
             previous->next = np;
-            np->next = list->head;
+            np->next = current; 
         }
-
-        list->head = head;
+    } else {
+        list->head = np;
+        np->next = NULL;
     }
 }
 
