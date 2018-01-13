@@ -41,7 +41,7 @@ queue *initialize_queue(void);
 
 void enqueue(queue *q, void *value);
 
-node *dequeue(queue *q);
+void *dequeue(queue *q);
 
 void free_node(node **n);
 

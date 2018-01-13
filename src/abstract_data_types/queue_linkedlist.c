@@ -50,12 +50,15 @@ void enqueue(queue *q, void *value) {
 *
 * @queue - the queue in which to remove the element
 *
-* Returns: the node removed from the queue
+* Returns: None
 */
-node *dequeue(queue *q) {
+void *dequeue(queue *q) {
     node *front = q->list->head;
+    void *value = front->value;
     q->list->head = q->list->head->next;
-    return front;
+    free_node(&front);
+
+    return value;
 }
 
 
