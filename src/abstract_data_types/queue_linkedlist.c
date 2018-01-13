@@ -50,7 +50,7 @@ void enqueue(queue *q, void *value) {
 *
 * @queue - the queue in which to remove the element
 *
-* Returns: None
+* Returns: void pointer to the value of the node
 */
 void *dequeue(queue *q) {
     node *front = q->list->head;
