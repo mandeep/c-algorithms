@@ -1,5 +1,5 @@
 /**
-* recursive_gcd - find the greatest common divisor of the two input parameters
+* recursive_gcd - recursively find the greatest common divisor of the two input parameters
 *
 * @a: one of the numbers to be used in the gcd calculation
 * @b: the other number to be used in the gcd calculation
@@ -16,7 +16,7 @@ int recursive_gcd(int a, int b) {
 
 
 /**
-* iterative_gcd - find the greatest common divisor of the two input parameters
+* iterative_gcd - iteratively find the greatest common divisor of the two input parameters
 *
 * @a: one of the numbers to be used in the gcd calculation
 * @b: the other number to be used in the gcd calculation
