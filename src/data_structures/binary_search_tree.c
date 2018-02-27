@@ -32,6 +32,34 @@ void insert_node(node **root, size_t value) {
 }
 
 
+node *find_node(node *root, size_t value) {
+    if (root == NULL || root->value == value) {
+        return root;
+    } else if (value < root->value) {
+        return find_node(root->left, value);
+    } else {
+        return find_node(root->right, value);
+    }
+}
+
+
+node *minimum(node *root) {
+    if (root->left == NULL) {
+        return root;
+    } else {
+        return minimum(root->left);
+    }
+}
+
+
+node *maximum(node *root) {
+    if (root->right == NULL) {
+        return root;
+    } else {
+        return maximum(root->right);
+    }
+}
+
 
 void preorder_traversal(node *root) {
     if (root != NULL) {
