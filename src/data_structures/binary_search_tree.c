@@ -19,17 +19,18 @@ node *create_node(size_t value) {
 }
 
 
-void insert(node **root, size_t value) {
+void insert_node(node **root, size_t value) {
     if (*root == NULL) {
         *root = create_node(value);
     } else {
         if (value < (*root)->value) {
-            insert(&(*root)->left, value);
+            insert_node(&(*root)->left, value);
         } else {
-            insert(&(*root)->right, value);
+            insert_node(&(*root)->right, value);
         }
     }
 }
+
 
 
 void preorder_traversal(node *root) {
