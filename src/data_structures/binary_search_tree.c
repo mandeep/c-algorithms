@@ -1,13 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-
-
-typedef struct node {
-    size_t value;
-    struct node *left;
-    struct node *right;
-} node;
-
+#include "binary_search_tree.h"
 
 
 node *create_node(size_t value) {
