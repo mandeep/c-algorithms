@@ -40,12 +40,61 @@ void insert_node(node **root, size_t value) {
 
 
 /**
+* free_node: free the node passed as an argument from memory
+*
+* @node: the node to free
+*
+* Returns: void
+*/
+void free_node(node **n) {
+    if (*n != NULL && n != NULL) {
+        free(*n);
+        n = NULL;
+    }
+}
+
+
+/**
+* delete_node: delete the node with the passed value from the passed node
+*
+* @root: the root node of the binary search tree
+* @value: the value, or key, of the node to delete
+*
+* Returns: the deleted node
+*/
+node *delete_node(node *root, size_t value) {
+    if (root == NULL) {
+        return root;
+    }
+
+    if (value < root->value) {
+        root->left = delete_node(root->left, value);
+    } else if (value > root->value) {
+        root->right = delete_node(root->right, value);
+    } else {
+        if (root->left == NULL) {
+            node *temp = root->right;
+            free_node(&root);
+            return temp;
+        } else if (root->right == NULL) {
+            node *temp = root->left;
+            free_node(&root);
+            return temp;
+        }
+        node *temp = minimum(root->right);
+        root->value = temp->value;
+        delete_node(root->right, temp->value);
+    }
+    return root;
+}
+
+/**
 * find_node: find the node with the passed value within the passed root node
 *
 * @root: the root node of the binary tree to search
-* @value: the value, or key, to search for
-*
-* Returns: the node with the passed value or NULL
+* @value: the value, or key, to search for*
+ge
+e* Returns: the node with the passed value or NULL
 */
 node *find_node(node *root, size_t value) {
     if (root == NULL || root->value == value) {
@@ -134,5 +183,21 @@ void postorder_traversal(node *root) {
         postorder_traversal(root->left);
         postorder_traversal(root->right);
         printf("%zu\n", root->value);
+    }
+}
+
+
+/**
+* destroy_tree: delete the entire tree from memory
+* 
+* @root: the root node of the binary search tree
+*
+* Returns: void
+*/
+void destroy_tree(node *root) {
+    if (root != NULL) {
+        destroy_tree(root->left);
+        destroy_tree(root->right);
+        free_node(&root);
     }
 }
