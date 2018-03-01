@@ -69,7 +69,7 @@ void pushleft(queue *q, void *value) {
 * Returns: void
 */
 void free_node(node **n) {
-    if (*n != NULL && n != NULL) {
+    if (n != NULL && *n != NULL) {
         free(*n);
         *n = NULL;
     }
