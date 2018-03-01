@@ -68,7 +68,7 @@ void enqueue(queue *q, void *value, size_t priority) {
 * Returns: void
 */
 void free_node(node **n) {
-    if (*n != NULL && n != NULL) {
+    if (n != NULL && *n != NULL) {
         free(*n);
         n = NULL;
     }
