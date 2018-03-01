@@ -78,7 +78,7 @@ bool is_empty(queue *q) {
 * Returns: void
 */
 void destroy_queue(queue **q) {
-    if (*q != NULL && q != NULL) {
+    if (q != NULL && *q != NULL) {
         free(*q);
         *q = NULL;
     }
