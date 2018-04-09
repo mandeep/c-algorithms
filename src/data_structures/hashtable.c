@@ -42,6 +42,7 @@ void insert_key(hashtable *table, size_t key, char *value) {
                 hash = ((key % table->size) + i * i) % table->size;
             }
         }
+
         table->members[hash].key = key;
         table->members[hash].value = value;
         table->count += 1;
