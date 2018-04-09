@@ -77,6 +77,36 @@ void remove_key(hashtable *table, size_t key) {
 
 
 /**
+* find_value - find the value associated with the given key
+*
+* @table: the hashtable whose contents to search
+* @key: the key whose value to find
+*
+* Returns: a string associated with the given key or "None"
+*/
+char *find_value(hashtable *table, size_t key) {
+    size_t i = 0;
+    size_t hash = ((key % table->size) + i * i) % table->size;
+
+    if (table->members[hash].key != key) {
+        size_t count = 0;
+        while (count < table->size && table->members[hash].key != key) {
+            i += 1;
+            hash = ((key % table->size) + i * i) % table->size;
+            count += 1;
+        }
+    }
+
+    if (table->members[hash].key == key) {
+        return table->members[hash].value;
+    } else {
+        return "None";
+    }
+
+}
+
+
+/**
 * print_table - print to stdout the contents of the hashtable
 *
 * @table: the hashtable whose contents to print to stdout
@@ -104,4 +134,4 @@ void destroy_table(hashtable **table) {
         free(*table);
         *table = NULL;
     }
-} 
+}
