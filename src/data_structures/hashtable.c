@@ -115,7 +115,7 @@ char *find_value(hashtable *table, size_t key) {
 */
 void print_table(hashtable *table) {
     for (size_t i = 0; i < table->size - 1; i++) {
-        if (table->members[i].key != 0 && table->members[i].value != NULL) {
+        if (table->members[i].value != NULL) {
             printf("Key: %zu, Value: %s\n", table->members[i].key, table->members[i].value);
         }
     }
