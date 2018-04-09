@@ -103,6 +103,6 @@ void *minimum(minimum_stack *stack) {
 void destroy_stack(minimum_stack **stack) {
     if (stack != NULL && *stack != NULL) {
         free(*stack);
-        stack = NULL;
+        *stack = NULL;
     }
 }

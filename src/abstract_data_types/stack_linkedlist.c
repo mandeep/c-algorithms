@@ -116,8 +116,8 @@ void destroy_stack(stack **st) {
         (*st)->top = (*st)->top->next;
         free_node(&destroyed_node);
     }
-    if (*st != NULL && st != NULL) {
+    if (st != NULL && *st != NULL) {
         free(*st);
-        st = NULL;
+        *st = NULL;
     }
 }

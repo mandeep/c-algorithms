@@ -272,7 +272,7 @@ size_t count_node_occurences(linked_list *list, void *value) {
 void free_node(node **n) {
     if (n != NULL && *n != NULL) {
         free(*n);
-        n = NULL;
+        *n = NULL;
     }
 }
 
@@ -384,9 +384,9 @@ void destroy_list(linked_list **list) {
         free_node(&destroyed_node);
     }
 
-    if (*list != NULL && list != NULL) {
+    if (list != NULL && *list != NULL) {
         free(*list);
-        list = NULL;
+        *list = NULL;
     }
 }
 

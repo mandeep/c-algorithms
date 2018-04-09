@@ -72,7 +72,7 @@ void *dequeue(queue *q) {
 void free_node(node **n) {
     if (n != NULL && *n != NULL) {
         free(*n);
-        n = NULL;
+        *n = NULL;
     }
 }
 
@@ -108,7 +108,7 @@ void destroy_queue(queue **q) {
         (*q)->list = NULL;
     }
 
-    if (*q != NULL && q != NULL) {
+    if (q != NULL && *q != NULL) {
         free(*q);
         *q = NULL;
     }

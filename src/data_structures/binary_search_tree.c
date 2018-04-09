@@ -49,7 +49,7 @@ void insert_node(node **root, size_t value) {
 void free_node(node **n) {
     if (n != NULL && *n != NULL) {
         free(*n);
-        n = NULL;
+        *n = NULL;
     }
 }
 

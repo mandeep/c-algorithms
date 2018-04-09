@@ -93,6 +93,6 @@ bool is_empty(stack *st) {
 void destroy_stack(stack **st) {
     if (st != NULL && *st != NULL) {
         free(*st);
-        st = NULL;
+        *st = NULL;
     }
 }

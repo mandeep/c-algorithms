@@ -211,7 +211,7 @@ void destroy_queue(queue **q) {
         (*q)->list = NULL;
     }
 
-    if (*q != NULL && q != NULL) {
+    if (q != NULL && *q != NULL) {
         free(*q);
         *q = NULL;
     }
