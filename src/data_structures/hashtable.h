@@ -13,7 +13,7 @@
 *
 * By default, the member's key is of type size_t and member's value is of type char *
 * The types of key and value can be changed to fit the user's needs, however the
-* print_table function will also need to be changed accordingly.
+* types will need to be changed in other functions as well.
 */
 typedef struct member {
     size_t key;
