@@ -10,6 +10,12 @@
 */
 hashtable *initialize_hashtable(size_t capacity) {
     hashtable *table = malloc(sizeof(hashtable) + capacity * sizeof(member));
+
+    if (table == NULL) {
+        fprintf(stderr, "%s\n", "Could not allocate memory for the hashtable.");
+        exit(-1);
+    }
+
     table->size = capacity;
     table->count = 0;
 
@@ -34,6 +40,12 @@ void reallocate_hashtable(hashtable **table) {
     size_t count = (*table)->count;
 
     hashtable *temp = realloc(*table, sizeof(hashtable) + sizeof(member) * (*table)->size * 2);
+
+    if (temp == NULL) {
+        fprintf(stderr, "%s\n", "Could not reallocate memory for the hashtable.");
+        exit(-1);
+    }
+
     temp->size = capacity * 2;
     temp->count = count;
 
