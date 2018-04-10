@@ -36,6 +36,8 @@ typedef struct hashtable {
 
 hashtable *initialize_hashtable(size_t capacity);
 
+void reallocate_hashtable(hashtable **table);
+
 void insert_key(hashtable *table, size_t key, char *value);
 
 void remove_key(hashtable *table, size_t key);

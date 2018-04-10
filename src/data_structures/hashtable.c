@@ -23,6 +23,30 @@ hashtable *initialize_hashtable(size_t capacity) {
 
 
 /**
+* reallocate_hashtable - double the size of the hashtable passed as an argument
+*
+* @table - a pointer to a pointer to the hashtable to resize
+*
+* Returns: void
+*/
+void reallocate_hashtable(hashtable **table) {
+    size_t capacity = (*table)->size;
+    size_t count = (*table)->count;
+
+    hashtable *temp = realloc(*table, sizeof(hashtable) + sizeof(member) * (*table)->size * 2);
+    temp->size = capacity * 2;
+    temp->count = count;
+
+    for (size_t i = capacity; i < temp->size; i++) {
+        temp->members[i].key = 0;
+        temp->members[i].value = NULL;
+    }
+
+    *table = temp;
+}
+
+
+/**
 * insert_key - insert a key and corresponding value into the hashtable
 *
 * @table: the hashtable in which to insert the key and value
@@ -114,7 +138,7 @@ char *find_value(hashtable *table, size_t key) {
 * Returns: void
 */
 void print_table(hashtable *table) {
-    for (size_t i = 0; i < table->size - 1; i++) {
+    for (size_t i = 0; i < table->size; i++) {
         if (table->members[i].value != NULL) {
             printf("Key: %zu, Value: %s\n", table->members[i].key, table->members[i].value);
         }
