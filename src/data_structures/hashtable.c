@@ -57,18 +57,18 @@ void reallocate_hashtable(hashtable **table) {
 */
 void insert_key(hashtable *table, size_t key, char *value) {
     size_t i = 0;
-    size_t hash = ((key % table->size) + i * i) % table->size;
+    size_t index = ((key % table->size) + i * i) % table->size;
 
     if (table->count < table->size) {
-        if (table->members[hash].value != NULL && table->members[hash].key != key) {
-            while (table->members[hash].value != NULL) {
+        if (table->members[index].value != NULL && table->members[index].key != key) {
+            while (table->members[index].value != NULL) {
                 i += 1;
-                hash = ((key % table->size) + i * i) % table->size;
+                index = ((key % table->size) + i * i) % table->size;
             }
         }
 
-        table->members[hash].key = key;
-        table->members[hash].value = value;
+        table->members[index].key = key;
+        table->members[index].value = value;
         table->count += 1;
     }
 }
@@ -84,19 +84,19 @@ void insert_key(hashtable *table, size_t key, char *value) {
 */
 void remove_key(hashtable *table, size_t key) {
     size_t i = 0;
-    size_t hash = ((key % table->size) + i * i) % table->size;
+    size_t index = ((key % table->size) + i * i) % table->size;
 
-    if (table->members[hash].key != key) {
+    if (table->members[index].key != key) {
         size_t count = 0;
-        while (count < table->size && table->members[hash].key != key) {
+        while (count < table->size && table->members[index].key != key) {
             i += 1;
-            hash = ((key % table->size) + i * i) % table->size;
+            index = ((key % table->size) + i * i) % table->size;
             count += 1;
         }
     }
 
-    table->members[hash].key = 0;
-    table->members[hash].value = NULL;
+    table->members[index].key = 0;
+    table->members[index].value = NULL;
 }
 
 
@@ -110,19 +110,19 @@ void remove_key(hashtable *table, size_t key) {
 */
 char *find_value(hashtable *table, size_t key) {
     size_t i = 0;
-    size_t hash = ((key % table->size) + i * i) % table->size;
+    size_t index = ((key % table->size) + i * i) % table->size;
 
-    if (table->members[hash].key != key) {
+    if (table->members[index].key != key) {
         size_t count = 0;
-        while (count < table->size && table->members[hash].key != key) {
+        while (count < table->size && table->members[index].key != key) {
             i += 1;
-            hash = ((key % table->size) + i * i) % table->size;
+            index = ((key % table->size) + i * i) % table->size;
             count += 1;
         }
     }
 
-    if (table->members[hash].key == key) {
-        return table->members[hash].value;
+    if (table->members[index].key == key) {
+        return table->members[index].value;
     } else {
         return "None";
     }
