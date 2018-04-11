@@ -31,25 +31,26 @@ hashtable *ht_new(size_t capacity) {
 /**
 * ht_resize - double the size of the hashtable passed as an argument
 *
-* @table - a pointer to a pointer to the hashtable to resize
+* @table: a pointer to a pointer to the hashtable to resize
+* @capacity: the size of the reallocated hashtable
 *
 * Returns: void
 */
-void ht_resize(hashtable **table) {
-    size_t capacity = (*table)->size;
+void ht_resize(hashtable **table, size_t capacity) {
+    size_t size = (*table)->size;
     size_t count = (*table)->count;
 
-    hashtable *temp = realloc(*table, sizeof(hashtable) + sizeof(member) * (*table)->size * 2);
+    hashtable *temp = realloc(*table, sizeof(hashtable) + sizeof(member) * capacity);
 
     if (temp == NULL) {
         fprintf(stderr, "%s\n", "Could not reallocate memory for the hashtable.");
         exit(-1);
     }
 
-    temp->size = capacity * 2;
+    temp->size = capacity;
     temp->count = count;
 
-    for (size_t i = capacity; i < temp->size; i++) {
+    for (size_t i = size; i < temp->size; i++) {
         temp->members[i].key = 0;
         temp->members[i].value = NULL;
     }

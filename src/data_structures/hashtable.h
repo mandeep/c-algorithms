@@ -36,7 +36,7 @@ typedef struct hashtable {
 
 hashtable *ht_new(size_t capacity);
 
-void ht_resize(hashtable **table);
+void ht_resize(hashtable **table, size_t capacity);
 
 void ht_insert(hashtable *table, size_t key, char *value);
 
