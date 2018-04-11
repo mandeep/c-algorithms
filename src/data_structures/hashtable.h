@@ -34,17 +34,19 @@ typedef struct hashtable {
     member members[];
 } hashtable;
 
-hashtable *initialize_hashtable(size_t capacity);
+hashtable *ht_new(size_t capacity);
 
-void reallocate_hashtable(hashtable **table);
+void ht_resize(hashtable **table);
 
-void insert_key(hashtable *table, size_t key, char *value);
+void ht_insert(hashtable *table, size_t key, char *value);
 
-void remove_key(hashtable *table, size_t key);
+void ht_remove(hashtable *table, size_t key);
 
-void print_table(hashtable *table);
+char *ht_search(hashtable *table, size_t key);
 
-void destroy_table(hashtable **table);
+void ht_print(hashtable *table);
+
+void ht_destroy(hashtable **table);
 
 
 #endif

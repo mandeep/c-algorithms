@@ -2,13 +2,13 @@
 
 
 /**
-* initialize_hashtable - allocate memory for the hashtable and initialize the members
+* ht_new - allocate memory for the hashtable and initialize the members
 *
 * @capacity: the maximum number of elements allowed to be stored in the hashtable
 *
 * Returns: the initialized hashtable
 */
-hashtable *initialize_hashtable(size_t capacity) {
+hashtable *ht_new(size_t capacity) {
     hashtable *table = malloc(sizeof(hashtable) + capacity * sizeof(member));
 
     if (table == NULL) {
@@ -29,13 +29,13 @@ hashtable *initialize_hashtable(size_t capacity) {
 
 
 /**
-* reallocate_hashtable - double the size of the hashtable passed as an argument
+* ht_resize - double the size of the hashtable passed as an argument
 *
 * @table - a pointer to a pointer to the hashtable to resize
 *
 * Returns: void
 */
-void reallocate_hashtable(hashtable **table) {
+void ht_resize(hashtable **table) {
     size_t capacity = (*table)->size;
     size_t count = (*table)->count;
 
@@ -59,7 +59,7 @@ void reallocate_hashtable(hashtable **table) {
 
 
 /**
-* insert_key - insert a key and corresponding value into the hashtable
+* ht_insert - insert a key and corresponding value into the hashtable
 *
 * @table: the hashtable in which to insert the key and value
 * @key: the key to store inside the hashtable
@@ -67,7 +67,7 @@ void reallocate_hashtable(hashtable **table) {
 *
 * Returns: void
 */
-void insert_key(hashtable *table, size_t key, char *value) {
+void ht_insert(hashtable *table, size_t key, char *value) {
     size_t i = 0;
     size_t index = ((key % table->size) + i * i) % table->size;
 
@@ -87,14 +87,14 @@ void insert_key(hashtable *table, size_t key, char *value) {
 
 
 /**
-* remove_key - remove a key and corresponding value from the hashtable
+* ht_remove - remove a key and corresponding value from the hashtable
 *
 * @table: the hashtable in which to remove the given key
 * @key: the key to remove from the hashtable
 *
 * Returns: void
 */
-void remove_key(hashtable *table, size_t key) {
+void ht_remove(hashtable *table, size_t key) {
     size_t i = 0;
     size_t index = ((key % table->size) + i * i) % table->size;
 
@@ -113,14 +113,14 @@ void remove_key(hashtable *table, size_t key) {
 
 
 /**
-* find_value - find the value associated with the given key
+* ht_search - find the value associated with the given key
 *
 * @table: the hashtable whose contents to search
 * @key: the key whose value to find
 *
 * Returns: a string associated with the given key or "None"
 */
-char *find_value(hashtable *table, size_t key) {
+char *ht_search(hashtable *table, size_t key) {
     size_t i = 0;
     size_t index = ((key % table->size) + i * i) % table->size;
 
@@ -143,13 +143,13 @@ char *find_value(hashtable *table, size_t key) {
 
 
 /**
-* print_table - print to stdout the contents of the hashtable
+* ht_print - print to stdout the contents of the hashtable
 *
 * @table: the hashtable whose contents to print to stdout
 *
 * Returns: void
 */
-void print_table(hashtable *table) {
+void ht_print(hashtable *table) {
     for (size_t i = 0; i < table->size; i++) {
         if (table->members[i].value != NULL) {
             printf("Key: %zu, Value: %s\n", table->members[i].key, table->members[i].value);
@@ -165,7 +165,7 @@ void print_table(hashtable *table) {
 *
 * Returns: void
 */
-void destroy_table(hashtable **table) {
+void ht_destroy(hashtable **table) {
     if (table != NULL && *table != NULL) {
         free(*table);
         *table = NULL;
