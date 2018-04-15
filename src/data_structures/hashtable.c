@@ -119,7 +119,7 @@ void ht_remove(hashtable *table, size_t key) {
 * @table: the hashtable whose contents to search
 * @key: the key whose value to find
 *
-* Returns: a string associated with the given key or "None"
+* Returns: a string associated with the given key or NULL
 */
 char *ht_search(hashtable *table, size_t key) {
     size_t i = 0;
@@ -137,7 +137,7 @@ char *ht_search(hashtable *table, size_t key) {
     if (table->members[index].key == key) {
         return table->members[index].value;
     } else {
-        return "None";
+        return NULL;
     }
 
 }
