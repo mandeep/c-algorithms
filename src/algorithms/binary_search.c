@@ -1,16 +1,13 @@
-#include <stdlib.h>
-
-
 /**
 * binary_search - continually halve an array to find the index of an element
 *
 * @numbers: the array to search through
 * @count: the length of the array
-* @number: the index of the number to find in the array
+* @number: the number to find in the array
 *
 * Returns: the index of the number if found, else -1
 */
-int binary_search(int numbers[], size_t count, int number) {
+int binary_search(int numbers[], unsigned int count, int number) {
     int low = 0;
     int high = count - 1;
 

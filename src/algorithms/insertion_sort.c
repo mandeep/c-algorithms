@@ -1,7 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
-
-
 /**
 * swap - swap the values of the given parameters
 *

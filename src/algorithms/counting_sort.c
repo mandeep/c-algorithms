@@ -1,5 +1,3 @@
-#include <stddef.h>
-
 /**
 * counting_sort - traverse an array and swap minimum elements until the array is sorted
 *
