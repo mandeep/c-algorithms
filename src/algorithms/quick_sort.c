@@ -36,6 +36,7 @@ int partition(int array[], int low, int high) {
     return i + 1;
 }
 
+
 /**
 * quick_sort - sort the given array by dividing it into partitioned subarrays
 *
