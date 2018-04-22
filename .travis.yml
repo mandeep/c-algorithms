@@ -1,0 +1,9 @@
+notifications:
+  email: false
+
+language: c
+
+addons: {apt: {packages: [xsel]}}
+
+script:
+  - gcc tests/test_sorts.c -o test_sorts && ./test_sorts
