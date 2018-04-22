@@ -151,11 +151,16 @@ char *ht_search(hashtable *table, size_t key) {
 * Returns: void
 */
 void ht_print(hashtable *table) {
+    printf("{");
     for (size_t i = 0; i < table->size; i++) {
         if (table->members[i].value != NULL) {
-            printf("Key: %zu, Value: %s\n", table->members[i].key, table->members[i].value);
+            printf("%zu: \"%s\"", table->members[i].key, table->members[i].value);
+            if (i < table->size - 1) {
+                printf(", ");
+            }
         }
     }
+    printf("}\n");
 }
 
 
