@@ -1,25 +1,29 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include "minunit.h"
 
 #include "../src/algorithms/bubble_sort.c"
 
+
 int tests_run = 0;
 
+int array1[] = {-40897, 84, 0, 3029, 92, 1904, 3498, -3924, -32, 1,
+                39809324, -1089, 5023, 232409, -23, -249, 789, 378546,
+                8934, 789524, 8475, 47589275, 89475897};
+
+int *intcpy(int array[], size_t length) {
+    int *copy = malloc(length * sizeof(int));
+    memcpy(copy, array, length * sizeof(int));
+    return copy;
+}
+
 char *test_bubble_sort(void) {
-    int array0[] = {4, 3, 2, 1, 0};
-    bubble_sort(array0, sizeof(array0) / sizeof(int));
+    int *other_array = intcpy(array1, sizeof(array1) / sizeof(int));
+    bubble_sort(other_array, sizeof(other_array) / sizeof(int));
 
-    for (size_t i = 0; i < sizeof(array0) / sizeof(int); i++) {
-        mu_assert("Error, array not bubble sorted.", array0[i] == (int) i);
-    }
-
-    int array1[] = {-40897, 84, 0, 3029, 92, 1904, 3498, -3924, -32, 1,
-                    39809324, -1089, 5023, 232409, -23, -249, 789, 378546,
-                    8934, 789524, 8475, 47589275, 89475897};
-    bubble_sort(array1, sizeof(array1) / sizeof(int));
-
-    for (size_t i = 0; i < sizeof(array1) / sizeof(int) - 1; i++) {
-        mu_assert("Error, array not bubble sorted.", array1[i] < array1[i+1]);
+    for (size_t i = 0; i < sizeof(other_array) / sizeof(int)-1; i++) {
+        mu_assert("Error, array1 not bubble sorted.", other_array[i] < other_array[i+1]);
     }
 
     return 0;
