@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "minunit.h"
+#include "greatest.h"
 
 #include "../src/algorithms/bubble_sort.c"
 
@@ -19,32 +19,24 @@ int *intcpy(int array[], size_t length) {
     return copy;
 }
 
-char *test_bubble_sort(void) {
+TEST test_bubble_sort(void) {
     int *array = intcpy(array1, array1_length);
     bubble_sort(array, array1_length);
 
     for (size_t i = 0; i < array1_length-1; i++) {
-        mu_assert("Error, array1 not bubble sorted.", array[i] < array[i+1]);
+        ASSERT(array[i] < array[i+1]);
     }
-
-    return 0;
+    PASS();
 }
 
-char *all_tests(void) {
-    mu_run_test(test_bubble_sort);
-
-    return 0;
+SUITE(suite) {
+    RUN_TEST(test_bubble_sort);
 }
 
-int main(void) {
-     char *result = all_tests();
-     if (result != 0) {
-         printf("%s\n", result);
-     }
-     else {
-         printf("ALL TESTS PASSED\n");
-     }
-     printf("Tests run: %d\n", tests_run);
+GREATEST_MAIN_DEFS();
 
-     return result != 0;
+int main(int argc, char **argv) {
+    GREATEST_MAIN_BEGIN();
+    RUN_SUITE(suite);
+    GREATEST_MAIN_END();
 }
