@@ -4,6 +4,7 @@
 #include "greatest.h"
 
 #include "../src/algorithms/bubble_sort.c"
+#include "../src/algorithms/counting_sort.c"
 
 
 int tests_run = 0;
@@ -11,7 +12,7 @@ int tests_run = 0;
 int array1[] = {-40897, 84, 0, 3029, 92, 1904, 3498, -3924, -32, 1,
                 39809324, -1089, 5023, 232409, -23, -249, 789, 378546,
                 8934, 789524, 8475, 47589275, 89475897};
-size_t array1_length = 23;
+size_t array1_length = 24;
 
 int *intcpy(int array[], size_t length) {
     int *copy = malloc(length * sizeof(int));
@@ -29,14 +30,32 @@ TEST test_bubble_sort(void) {
     PASS();
 }
 
-SUITE(suite) {
-    RUN_TEST(test_bubble_sort);
+TEST test_counting_sort(void) {
+    // we assume counting sort needs nonnegative integrs so we create
+    // an array for the sort
+    int array[] = {40897, 84, 2, 3029, 92, 1904, 3498, 3924, 32, 1,
+                   1089, 5023, 232409, 23, 249, 789, 378546};
+    int length = sizeof(array) / sizeof(int);
+
+    int sorted_array[length];
+
+    for (int i = 0; i < length; i++) {
+        sorted_array[i] = 0;
+    }
+
+    counting_sort(array, sorted_array, length, 378546);
+
+    for (size_t i = 0; i < length-1; i++) {
+        ASSERT(sorted_array[i] < sorted_array[i+1]);
+    }
+    PASS();
 }
 
 GREATEST_MAIN_DEFS();
 
 int main(int argc, char **argv) {
     GREATEST_MAIN_BEGIN();
-    RUN_SUITE(suite);
+    RUN_TEST(test_bubble_sort);
+    RUN_TEST(test_counting_sort);
     GREATEST_MAIN_END();
 }
