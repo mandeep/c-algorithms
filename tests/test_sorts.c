@@ -13,12 +13,13 @@ char *test_bubble_sort(void) {
         mu_assert("Error, array not bubble sorted.", array0[i] == (int) i);
     }
 
-    int array1[] = {-40897, 84, 0, 3029, 92, 1904, 3498, -3924, -32, 1};
-    int array2[] = {-40897, -3924, -32, 0, 1, 84, 92, 1904, 3029, 3498};
+    int array1[] = {-40897, 84, 0, 3029, 92, 1904, 3498, -3924, -32, 1,
+                    39809324, -1089, 5023, 232409, -23, -249, 789, 378546,
+                    8934, 789524, 8475, 47589275, 89475897};
     bubble_sort(array1, sizeof(array1) / sizeof(int));
 
-    for (size_t i = 0; i < sizeof(array1) / sizeof(int); i++) {
-        mu_assert("Error, array not bubble sorted.", array1[i] == array2[i]);
+    for (size_t i = 0; i < sizeof(array1) / sizeof(int) - 1; i++) {
+        mu_assert("Error, array not bubble sorted.", array1[i] < array1[i+1]);
     }
 
     return 0;
