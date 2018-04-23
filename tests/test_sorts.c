@@ -19,11 +19,11 @@ int *intcpy(int array[], size_t length) {
 }
 
 char *test_bubble_sort(void) {
-    int *other_array = intcpy(array1, sizeof(array1) / sizeof(int));
-    bubble_sort(other_array, sizeof(other_array) / sizeof(int));
+    int *array = intcpy(array1, 23);
+    bubble_sort(array, 23);
 
-    for (size_t i = 0; i < sizeof(other_array) / sizeof(int)-1; i++) {
-        mu_assert("Error, array1 not bubble sorted.", other_array[i] < other_array[i+1]);
+    for (size_t i = 0; i < 22; i++) {
+        mu_assert("Error, array1 not bubble sorted.", array[i] < array[i+1]);
     }
 
     return 0;
