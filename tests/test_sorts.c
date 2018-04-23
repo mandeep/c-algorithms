@@ -12,7 +12,7 @@ int tests_run = 0;
 int array1[] = {-40897, 84, 0, 3029, 92, 1904, 3498, -3924, -32, 1,
                 39809324, -1089, 5023, 232409, -23, -249, 789, 378546,
                 8934, 789524, 8475, 47589275, 89475897};
-size_t array1_length = 24;
+size_t array1_length = 23;
 
 int *intcpy(int array[], size_t length) {
     int *copy = malloc(length * sizeof(int));

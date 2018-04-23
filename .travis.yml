@@ -1,9 +1,13 @@
 notifications:
   email: false
 
+dist: trusty
+sudo: required
+
 language: c
 
-addons: {apt: {packages: [xsel]}}
+before_install:
+  - chmod +x run_tests.sh
 
 script:
-  - gcc tests/test_sorts.c -o test_sorts -std=c11 && ./test_sorts
+  - ./run_tests.sh
