@@ -11,7 +11,7 @@
 void counting_sort(int array[], int output[], int length, int maximum) {
     int temp[maximum+1];
 
-    for (int i = 0; i < maximum; i++) {
+    for (int i = 0; i <= maximum; i++) {
         temp[i] = 0;
     }
 
@@ -19,7 +19,7 @@ void counting_sort(int array[], int output[], int length, int maximum) {
         temp[array[j]] += 1;
     }
 
-    for (int k = 1; k < maximum + 1; k++) {
+    for (int k = 1; k <= maximum; k++) {
         temp[k] += temp[k-1];
     }
 
