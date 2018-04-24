@@ -62,13 +62,16 @@ TEST test_heap_sort(void) {
     PASS();
 }
 
+SUITE(sorting_algorithms) {
+    RUN_TEST(test_bubble_sort);
+    RUN_TEST(test_counting_sort);
+    RUN_TEST(test_heap_sort);
+}
 
 GREATEST_MAIN_DEFS();
 
 int main(int argc, char **argv) {
     GREATEST_MAIN_BEGIN();
-    RUN_TEST(test_bubble_sort);
-    RUN_TEST(test_counting_sort);
-    RUN_TEST(test_heap_sort);
+    RUN_SUITE(sorting_algorithms);
     GREATEST_MAIN_END();
 }
