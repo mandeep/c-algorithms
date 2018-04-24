@@ -8,9 +8,13 @@
 #include "../src/algorithms/bubble_sort.c"
 #include "../src/algorithms/counting_sort.c"
 #include "../src/algorithms/heap_sort.c"
+#include "../src/algorithms/insertion_sort.c"
+#include "../src/algorithms/merge_sort.c"
+#include "../src/algorithms/quick_sort.c"
+#include "../src/algorithms/selection_sort.c"
 
 
-const int TEST_ARRAY_SIZE = 100;
+const int TEST_ARRAY_SIZE = 10;
 
 int max(int array[], int length) {
     int maximum = 0;
@@ -70,8 +74,58 @@ TEST test_heap_sort(void) {
     PASS();
 }
 
+
+TEST test_insertion_sort(void) {
+    int *array = create_random_array(TEST_ARRAY_SIZE);
+    
+    insertion_sort(array, TEST_ARRAY_SIZE);
+
+    for (int i = 0; i < TEST_ARRAY_SIZE-1; i++) {
+        ASSERT(array[i] <= array[i+1]);
+    }
+    PASS();
+}
+
+TEST test_merge_sort(void) {
+    int *array = create_random_array(TEST_ARRAY_SIZE);
+    
+    merge_sort(array, 0, TEST_ARRAY_SIZE);
+
+    for (int i = 0; i < TEST_ARRAY_SIZE-1; i++) {
+        ASSERT(array[i] <= array[i+1]);
+    }
+    PASS();
+}
+
+TEST test_quick_sort(void) {
+    int *array = create_random_array(TEST_ARRAY_SIZE);
+    
+    quick_sort(array, 0, TEST_ARRAY_SIZE);
+
+    for (int i = 0; i < TEST_ARRAY_SIZE-1; i++) {
+        ASSERT(array[i] <= array[i+1]);
+    }
+    PASS();
+}
+
+TEST test_selection_sort(void) {
+    int *array = create_random_array(TEST_ARRAY_SIZE);
+    
+    selection_sort(array, TEST_ARRAY_SIZE);
+
+    for (int i = 0; i < TEST_ARRAY_SIZE-1; i++) {
+        ASSERT(array[i] <= array[i+1]);
+    }
+    PASS();
+}
+
+
 SUITE(sorting_algorithms) {
     RUN_TEST(test_bubble_sort);
     RUN_TEST(test_counting_sort);
     RUN_TEST(test_heap_sort);
+    RUN_TEST(test_insertion_sort);
+    RUN_TEST(test_merge_sort);
+    RUN_TEST(test_quick_sort);
+    RUN_TEST(test_selection_sort);
 }
