@@ -46,7 +46,7 @@ TEST test_counting_sort(void) {
 
     counting_sort(array, sorted_array, length, 378546);
 
-    for (size_t i = 0; i < length-1; i++) {
+    for (int i = 0; i < length-1; i++) {
         ASSERT(sorted_array[i] < sorted_array[i+1]);
     }
     PASS();
