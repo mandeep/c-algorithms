@@ -5,6 +5,7 @@
 
 #include "../src/algorithms/bubble_sort.c"
 #include "../src/algorithms/counting_sort.c"
+#include "../src/algorithms/heap_sort.c"
 
 
 int tests_run = 0;
@@ -51,11 +52,23 @@ TEST test_counting_sort(void) {
     PASS();
 }
 
+TEST test_heap_sort(void) {
+    int *array = intcpy(array1, array1_length);
+    heap_sort(array, array1_length);
+
+    for (size_t i = 0; i < array1_length-1; i++) {
+        ASSERT(array[i] < array[i+1]);
+    }
+    PASS();
+}
+
+
 GREATEST_MAIN_DEFS();
 
 int main(int argc, char **argv) {
     GREATEST_MAIN_BEGIN();
     RUN_TEST(test_bubble_sort);
     RUN_TEST(test_counting_sort);
+    RUN_TEST(test_heap_sort);
     GREATEST_MAIN_END();
 }
