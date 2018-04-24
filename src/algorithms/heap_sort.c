@@ -1,3 +1,7 @@
+#ifndef SWAP_FUNC_
+#define SWAP_FUNC_
+
+
 /**
 * swap - swap the values of the given parameters
 *
@@ -11,6 +15,9 @@ void swap(int *a, int *b) {
     *a = *b;
     *b = temp;
 }
+
+
+#endif
 
 
 /**
@@ -30,7 +37,7 @@ void heapify(int array[], int size, int root) {
     if (left < size && array[left] > array[maximum])
         maximum = left;
  
-     if (right < size && array[right] > array[maximum])
+    if (right < size && array[right] > array[maximum])
         maximum = right;
  
     if (maximum != root) {
@@ -52,7 +59,7 @@ void heap_sort(int array[], int length) {
     for (int i = length / 2 - 1; i >= 0; i--)
         heapify(array, length, i);
  
-    for (int i = length - 1; i >= 0; i--) {
+    for (int i = length - 1; i > 0; i--) {
         swap(&array[0], &array[i]);
         heapify(array, i, 0);
     }
