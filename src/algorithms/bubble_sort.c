@@ -1,3 +1,7 @@
+#ifndef SWAP_FUNC_
+#define SWAP_FUNC_
+
+
 /**
 * swap - swap the values of the given parameters
 *
@@ -11,6 +15,9 @@ void swap(int *a, int *b) {
     *a = *b;
     *b = temp;
 }
+
+
+#endif
 
 
 /**
