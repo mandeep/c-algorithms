@@ -10,6 +10,8 @@
 #include "../src/algorithms/heap_sort.c"
 
 
+const int TEST_ARRAY_SIZE = 100;
+
 int max(int array[], int length) {
     int maximum = 0;
     for (int i = 0; i < length; i++) {
@@ -20,55 +22,49 @@ int max(int array[], int length) {
     return maximum;
 }
 
-TEST test_bubble_sort(void) {
+int *create_random_array(int length) {
     srand(time(NULL));
-    int random_number = rand() % 10;
-    int array[random_number];
-    for (int i = 0; i < random_number; i++) {
-        array[i] = rand();
+    int *array = malloc(sizeof(int) * length);
+    for (int i = 0; i < length; i++) {
+        array[i] = rand() % 1000;
     }
+    return array;
+}
 
-    bubble_sort(array, random_number);
+TEST test_bubble_sort(void) {
+    int *array = create_random_array(TEST_ARRAY_SIZE);
 
-    for (int i = 0; i < random_number-1; i++) {
+    bubble_sort(array, TEST_ARRAY_SIZE);
+
+    for (int i = 0; i < TEST_ARRAY_SIZE-1; i++) {
         ASSERT(array[i] <= array[i+1]);
     }
     PASS();
 }
 
 TEST test_counting_sort(void) {
-    srand(time(NULL));
-    int random_number = rand() % 10;
-    int array[random_number];
-    for (int i = 0; i < random_number; i++) {
-        array[i] = rand();
-    }
+    int *array = create_random_array(TEST_ARRAY_SIZE);
 
-    int sorted_array[random_number];
+    int sorted_array[TEST_ARRAY_SIZE];
 
-    for (int i = 0; i < random_number; i++) {
+    for (int i = 0; i < TEST_ARRAY_SIZE; i++) {
         sorted_array[i] = 0;
     }
     
-    counting_sort(array, sorted_array, random_number, max(array, random_number));
+    counting_sort(array, sorted_array, TEST_ARRAY_SIZE, max(array, TEST_ARRAY_SIZE));
 
-    for (int i = 0; i < random_number-1; i++) {
+    for (int i = 0; i < TEST_ARRAY_SIZE-1; i++) {
         ASSERT(sorted_array[i] <= sorted_array[i+1]);
     }
     PASS();
 }
 
 TEST test_heap_sort(void) {
-    srand(time(NULL));
-    int random_number = rand() % 10;
-    int array[random_number];
-    for (int i = 0; i < random_number; i++) {
-        array[i] = rand();
-    }
+    int *array = create_random_array(TEST_ARRAY_SIZE);
     
-    heap_sort(array, random_number);
+    heap_sort(array, TEST_ARRAY_SIZE);
 
-    for (int i = 0; i < random_number-1; i++) {
+    for (int i = 0; i < TEST_ARRAY_SIZE-1; i++) {
         ASSERT(array[i] <= array[i+1]);
     }
     PASS();
