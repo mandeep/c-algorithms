@@ -32,8 +32,8 @@ TEST test_bubble_sort(void) {
 }
 
 TEST test_counting_sort(void) {
-    // we assume counting sort needs nonnegative integrs so we create
-    // an array for the sort
+    // we assume counting sort needs nonnegative integers so we create
+    // an array for the sort as opposed to using the global array
     int array[] = {40897, 84, 2, 3029, 92, 1904, 3498, 3924, 32, 1,
                    1089, 5023, 232409, 23, 249, 789, 378546};
     int length = sizeof(array) / sizeof(int);
