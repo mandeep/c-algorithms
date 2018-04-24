@@ -1,3 +1,3 @@
 #!/bin/bash
-gcc tests/test_sorts.c -o test_sorts -std=c11
-./test_sorts
+gcc tests/test_suite.c -Wall -Wextra -pedantic -o test_suite -std=c11
+./test_suite
