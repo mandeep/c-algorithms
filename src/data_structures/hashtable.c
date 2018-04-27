@@ -13,7 +13,7 @@ hashtable *ht_new(size_t capacity) {
 
     if (table == NULL) {
         fprintf(stderr, "%s\n", "Could not allocate memory for the hashtable.");
-        exit(-1);
+        exit(EXIT_FAILURE);
     }
 
     table->size = capacity;
@@ -44,7 +44,7 @@ void ht_resize(hashtable **table, size_t capacity) {
 
     if (temp == NULL) {
         fprintf(stderr, "%s\n", "Could not reallocate memory for the hashtable.");
-        exit(-1);
+        exit(EXIT_FAILURE);
     }
 
     temp->size = capacity;
