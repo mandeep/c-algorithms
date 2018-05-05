@@ -20,6 +20,9 @@ void swap(int* a, int* b) {
 #endif
  
 
+#ifndef PARTITION_FUNC_
+#define PARTITION_FUNC_
+
 /**
 * partition - partition the subarray around the pivot element
 *
@@ -42,6 +45,9 @@ int partition(int array[], int low, int high) {
     swap(&array[i + 1], &array[high]);
     return i + 1;
 }
+
+
+#endif
 
 
 /**
