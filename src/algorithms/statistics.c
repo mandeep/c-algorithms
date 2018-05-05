@@ -1,3 +1,7 @@
+#ifndef SWAP_FUNC_
+#define SWAP_FUNC_
+
+
 /**
 * swap - swap the values of the given parameters
 *
@@ -11,7 +15,14 @@ void swap(int* a, int* b) {
     *a = *b;
     *b = temp;
 }
+
+
+#endif
  
+
+#ifndef PARTITION_FUNC_
+#define PARTITION_FUNC_
+
 
 /**
 * partition - partition the subarray around the pivot element
@@ -35,6 +46,9 @@ int partition(int array[], int low, int high) {
     swap(&array[i + 1], &array[high]);
     return i + 1;
 }
+
+
+#endif
 
 
 /**
