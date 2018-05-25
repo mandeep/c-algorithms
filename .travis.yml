@@ -4,16 +4,21 @@ notifications:
 dist: trusty
 sudo: required
 
-addons:
-    apt:
-        sources:
-            - ubuntu-toolchain-r-test
-        packages:
-            - g++-7
+matrix:
+    os: linux
+    addons:
+        apt:
+            sources:
+                - ubuntu-toolchain-r-test
+            packages:
+                - g++-7
+    env:
+        - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
 
 language: c
 
 before_install:
+  - eval "$(MATRIX_EVAL)"
   - chmod +x run_tests.sh
 
 script:
