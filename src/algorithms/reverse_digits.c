@@ -6,6 +6,17 @@
 #define reverse_digits(x) _Generic((x), int: reverse_digits_int, char*: reverse_digits_string)(x)
 
 
+/**
+* reverse_digits_int - reverse the digits of the given int
+*
+* @n: the integer whose digits to reverse
+*
+* Returns: the reverse of the int
+*
+* The digits of the int are returned in reverse unless the int
+* ends in a zero in which case the zero is truncated. If the
+* given int is negative the reverse will also be negative.
+*/
 int reverse_digits_int(int n) {
     int reverse = 0;
     int sign = n < 0 ? -1 : 1;
@@ -19,8 +30,18 @@ int reverse_digits_int(int n) {
 }
 
 
+/**
+* reverse_digits_string - reverse the digits of the given string
+*
+* @string: reverse the digits of the given string
+*
+* Returns: the reverse of the string
+*
+* The digits of the string are returned in reverse unless the string
+* ends in a zero in which case the zero is truncated. If the
+* given string is negative the reverse will also be negative.
+*/
 char *reverse_digits_string(char *string) {
-    int negative = string[0] == '-' ? true : false;
     int n = strlen(string);
     char *reverse = malloc(sizeof(char) * n);
 
@@ -32,7 +53,7 @@ char *reverse_digits_string(char *string) {
         memmove(reverse, reverse+1, strlen(reverse));
     }
 
-    if (negative) {
+    if (string[0] == '-') {
        for (int i = n - 1; i > 0; i--) {
            reverse[i] = reverse[i - 1];
        }
