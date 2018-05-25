@@ -4,6 +4,13 @@ notifications:
 dist: trusty
 sudo: required
 
+addons:
+    apt:
+        sources:
+            - ubuntu-toolchain-r-test
+        packages:
+            - g++-7
+
 language: c
 
 before_install:
