@@ -1,9 +1,6 @@
 notifications:
   email: false
 
-dist: trusty
-sudo: required
-
 matrix:
     os: linux
     addons:
