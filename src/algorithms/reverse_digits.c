@@ -2,6 +2,7 @@
 #include <string.h>
 #include <stdbool.h>
 
+
 #define reverse_digits(x) _Generic((x), int: reverse_digits_int, char*: reverse_digits_string)(x)
 
 
@@ -29,6 +30,13 @@ char *reverse_digits_string(char *string) {
 
     while (reverse[0] == '0') {
         memmove(reverse, reverse+1, strlen(reverse));
+    }
+
+    if (negative) {
+       for (int i = n - 1; i > 0; i--) {
+           reverse[i] = reverse[i - 1];
+       }
+       reverse[0] = '-';
     }
 
     return reverse;
