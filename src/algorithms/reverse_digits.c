@@ -19,14 +19,13 @@
 */
 int reverse_digits_int(int n) {
     int reverse = 0;
-    int sign = n < 0 ? -1 : 1;
 
     while (n != 0) {
         reverse = reverse * 10 + n % 10;
         n /= 10;
     }
 
-    return reverse * sign;
+    return reverse;
 }
 
 
