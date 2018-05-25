@@ -22,16 +22,9 @@ char *reverse_digits_string(char *string) {
     int negative = string[0] == '-' ? true : false;
     int n = strlen(string);
     char *reverse = malloc(sizeof(char) * n);
-    
-    if (negative) {
-        reverse[0] = '-';
-    }
 
-    int i = negative ? 1 : 0;
-
-    while (i < n) {
+    for (int i = 0; i < n; i++) {
         reverse[i] = string[n - i - 1];
-        i += 1;
     }
 
     while (reverse[0] == '0') {
