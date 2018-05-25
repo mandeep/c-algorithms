@@ -15,9 +15,8 @@ language: c
 compiler: gcc
 
 before_install:
-  - sudo apt-get update -qq
-  - sudo apt-get upgrade -yq
   - chmod +x run_tests.sh
 
 script:
+  - sudo unlink /usr/bin/gcc && sudo ln -s /usr/bin/gcc-8 /usr/bin/gcc
   - ./run_tests.sh
