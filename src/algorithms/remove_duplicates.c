@@ -1,5 +1,5 @@
 /**
-* remove_duplicates - remove the duplicates in an array by returning the slice index
+* remove_duplicates - remove duplicates in a sorted array by returning the array's new length
 *
 * @array: the array whose duplicates to remove
 * @length: the number of elements in the array
