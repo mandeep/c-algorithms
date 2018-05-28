@@ -3,7 +3,7 @@
 #include <string.h>
 
 
-#define is_palindrome(x) _Generic((x), int: is_palindrome_int, char*: is_palindrome_string)(x)
+#define is_palindrome(x) _Generic((x), size_t: is_palindrome_int, char*: is_palindrome_string)(x)
 
 
 /**
