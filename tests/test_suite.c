@@ -5,6 +5,7 @@
 #include "test_bst.c"
 #include "test_reverse_digits.c"
 #include "test_remove_duplicates.c"
+#include "test_palindrome.c"
 
 
 GREATEST_MAIN_DEFS();
@@ -18,5 +19,6 @@ int main(int argc, char **argv) {
     RUN_SUITE(binary_search_tree);
     RUN_SUITE(reverse_algorithms);
     RUN_SUITE(removal_algorithms);
+    RUN_SUITE(palindrome_algorithms);
     GREATEST_MAIN_END();
 }
