@@ -1,4 +1,3 @@
-#include <string.h>
 #include "greatest.h"
 
 #include "../src/algorithms/reverse_digits.c"
