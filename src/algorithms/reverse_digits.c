@@ -1,6 +1,5 @@
 #include <stdlib.h>
 #include <string.h>
-#include <stdbool.h>
 
 
 #define reverse_digits(x) _Generic((x), int: reverse_digits_int, char*: reverse_digits_string)(x)
