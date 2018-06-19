@@ -9,8 +9,8 @@ int count_ones(int n) {
     int ones = 0;
 
     while (n > 0) {
-        ones += 1;
         n &= n - 1;
+        ones += 1;
     }
 
     return ones;
@@ -28,8 +28,8 @@ int check_parity(int n) {
     int parity = 0;
 
     while (n > 0) {
-        parity ^= 1;
         n &= n - 1;
+        parity ^= 1;
     }
 
     return parity;
