@@ -20,7 +20,7 @@ int count_ones(int n) {
 /**
 * check_parity - check the parity of the given integer's bits
 *
-* @n - the integer whose parity to check
+* @n: the integer whose parity to check
 *
 * Returns: 1 if the number of one bits is odd, 0 if the number of one bits is even
 */
