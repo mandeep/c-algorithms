@@ -68,7 +68,7 @@ int swap_bits(int n, int i, int j) {
  */
 int reverse_bits(int n) {
     int m = 0;
-    for (int i = 0; i < (int) sizeof(n) * 8; i++) {
+    while (n > 0) {
         m <<= 1;
         m |= n & 1;
         n >>= 1;
