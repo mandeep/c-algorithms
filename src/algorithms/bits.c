@@ -56,3 +56,23 @@ int swap_bits(int n, int i, int j) {
 
     return n;
 }
+
+
+/**
+ * reverse_bits - reverse the bits in the given integer
+ *
+ * @n: the integer whose bits to reverse
+ *
+ * Returns: the integer obtained when reversing the bits in n
+ *
+ */
+int reverse_bits(int n) {
+    int m = 0;
+    for (int i = 0; i < (int) sizeof(n) * 8; i++) {
+        m <<= 1;
+        m |= n & 1;
+        n >>= 1;
+    }
+
+    return m;
+}
