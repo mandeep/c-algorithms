@@ -39,9 +39,11 @@ int check_parity(int n) {
 /**
  * swap_bits - swap the bits at index i and index j
  *
- * @n: the interger whose bits to swap
+ * @n: the integer whose bits to swap
  * @i: the index of the bit to swap with the bit at index j
  * @j: the index of the bit to swap with the bit at index i
+ *
+ * Returns: the integer obtained when swapping the bits at i and j
  *
  * Since bits are shifted from the end, the i and j indexes
  * are counted from the right not from the left.
