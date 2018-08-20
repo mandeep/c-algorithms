@@ -6,6 +6,7 @@
 #include "test_reverse_digits.c"
 #include "test_remove_duplicates.c"
 #include "test_palindrome.c"
+#include "test_bits.c"
 
 
 GREATEST_MAIN_DEFS();
@@ -20,5 +21,6 @@ int main(int argc, char **argv) {
     RUN_SUITE(reverse_algorithms);
     RUN_SUITE(removal_algorithms);
     RUN_SUITE(palindrome_algorithms);
+    RUN_SUITE(bit_algorithms);
     GREATEST_MAIN_END();
 }
