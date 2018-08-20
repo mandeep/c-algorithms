@@ -10,10 +10,10 @@
 * @value: the value of the element to hold in the node
 * @next: the next node to link to when creating a singly linked list
 */
-typedef struct node {
+typedef struct queue_node {
     void *value;
-    struct node *next;
-} node;
+    struct queue_node *next;
+} queue_node;
 
 
 /**
@@ -22,10 +22,10 @@ typedef struct node {
 * @head: the head node of the linked list
 * @tail: the tail node of the linked list
 */
-typedef struct linked_list {
-    node *head;
-    node *tail;
-} linked_list;
+typedef struct queue_list {
+    queue_node *head;
+    queue_node *tail;
+} queue_list;
 
 
 /**
@@ -34,21 +34,21 @@ typedef struct linked_list {
 * @linked_list: the linked list that will hold the elements of the queue
 */
 typedef struct queue {
-    linked_list *list;
+    queue_list *list;
 } queue;
 
 queue *initialize_queue(void);
 
-void enqueue(queue *q, void *value);
+void q_enqueue(queue *q, void *value);
 
-void *dequeue(queue *q);
+void *q_dequeue(queue *q);
 
-void free_node(node **n);
+void q_free_node(queue_node **n);
 
-bool is_empty(queue *q);
+bool q_is_empty(queue *q);
 
-void destroy_queue(queue **q);
+void q_destroy(queue **q);
 
-void print_queue(queue *q);
+void q_print(queue *q);
 
 #endif

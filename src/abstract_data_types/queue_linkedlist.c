@@ -13,7 +13,7 @@
 */
 queue *initialize_queue(void) {
     queue *q = malloc(sizeof(queue));
-    q->list = malloc(sizeof(node) * 2);
+    q->list = malloc(sizeof(queue_node) * 2);
 
     q->list->head = NULL;
     q->list->tail = NULL;
@@ -30,8 +30,8 @@ queue *initialize_queue(void) {
 *
 * Returns: void
 */
-void enqueue(queue *q, void *value) {
-    node *np = malloc(sizeof(node));
+void q_enqueue(queue *q, void *value) {
+    queue_node *np = malloc(sizeof(queue_node));
     np->value = value;
     np->next = NULL;
 
@@ -52,11 +52,11 @@ void enqueue(queue *q, void *value) {
 *
 * Returns: void pointer to the value of the node
 */
-void *dequeue(queue *q) {
-    node *front = q->list->head;
+void *q_dequeue(queue *q) {
+    queue_node *front = q->list->head;
     void *value = front->value;
     q->list->head = q->list->head->next;
-    free_node(&front);
+    q_free_node(&front);
 
     return value;
 }
@@ -69,7 +69,7 @@ void *dequeue(queue *q) {
 *
 * Returns: void
 */
-void free_node(node **n) {
+void q_free_node(queue_node **n) {
     if (n != NULL && *n != NULL) {
         free(*n);
         *n = NULL;
@@ -84,7 +84,7 @@ void free_node(node **n) {
 *
 * Returns: boolean value of the queue's emptiness
 */
-bool is_empty(queue *q) {
+bool q_is_empty(queue *q) {
     return q->list->head == NULL;
 }
 
@@ -96,11 +96,11 @@ bool is_empty(queue *q) {
 *
 * Returns: void
 */
-void destroy_queue(queue **q) {
+void q_destroy(queue **q) {
     while ((*q)->list->head != NULL) {
-        node *destroyed_node = (*q)->list->head;
+        queue_node *destroyed_node = (*q)->list->head;
         (*q)->list->head = (*q)->list->head->next;
-        free_node(&destroyed_node);
+        q_free_node(&destroyed_node);
     }
 
     if ((*q)->list != NULL) {
@@ -126,9 +126,9 @@ void destroy_queue(queue **q) {
 * to print the value. The cast needs to be changed if
 * the value is a type that can't be cast to intptr_t.
 */
-void print_queue(queue *q) {
-    node *current = q->list->head;
-    
+void q_print(queue *q) {
+    queue_node *current = q->list->head;
+
     while (current != NULL) {
         printf("%zu ", (intptr_t) current->value);
         current = current->next;
