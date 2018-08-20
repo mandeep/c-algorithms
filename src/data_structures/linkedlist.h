@@ -12,22 +12,22 @@
 * @next: the next node to link to when creating a singly linked list
 * @previous: the previous node to link if creating a doubly linked list
 */
-typedef struct node {
+typedef struct list_node {
     void *value;
-    struct node *next;
-    struct node *previous;
-} node;
+    struct list_node *next;
+    struct list_node *previous;
+} list_node;
 
 
 /**
 * linked_list - the linked_list data structure that holds nodes of data
 *
 * @head: the head node of the linked list
-* @tail: the tail node of the linked list (used when keeping track of the last node) 
+* @tail: the tail node of the linked list (used when keeping track of the last node)
 */
 typedef struct linked_list {
-    node *head;
-    node *tail;
+    list_node *head;
+    list_node *tail;
 } linked_list;
 
 
@@ -43,13 +43,13 @@ void insert_in_order(linked_list *list, void *value);
 
 void insert_double_link(linked_list *list, void *value);
 
-node *get_node(linked_list *list, size_t index);
+list_node *get_node(linked_list *list, size_t index);
 
 void swap_nodes(linked_list *list, void *x, void *y);
 
 size_t count_node_occurences(linked_list *list, void *value);
 
-void free_node(node **n);
+void free_node(list_node **n);
 
 void delete_at_head(linked_list *list);
 

@@ -11,7 +11,7 @@
 * Returns: linked_list
 */
 linked_list *initialize_list(void) {
-    linked_list *list = malloc(sizeof(node) * 2);
+    linked_list *list = malloc(sizeof(list_node) * 2);
 
     list->head = NULL;
     list->tail = NULL;
@@ -34,7 +34,7 @@ linked_list *initialize_list(void) {
 * other insertion methods.
 */
 void insert_at_tail(linked_list *list, void *value) {
-    node *np = malloc(sizeof(node));
+    list_node *np = malloc(sizeof(list_node));
     np->value = value;
     np->next = NULL;
 
@@ -62,7 +62,7 @@ void insert_at_tail(linked_list *list, void *value) {
 * methods.
 */
 void insert_at_head(linked_list *list, void *value) {
-    node *np = malloc(sizeof(node));
+    list_node *np = malloc(sizeof(list_node));
     np->value = value;
     np->next = list->head;
     list->head = np;
@@ -81,11 +81,11 @@ void insert_at_head(linked_list *list, void *value) {
 * This method is not to be used with other insertion methods.
 */
 void insert_at_position(linked_list *list, void *value, size_t index) {
-    node *np = malloc(sizeof(node));
+    list_node *np = malloc(sizeof(list_node));
     np->value = value;
 
-    node *previous = NULL;
-    node *current = list->head;
+    list_node *previous = NULL;
+    list_node *current = list->head;
 
     size_t count = 0;
 
@@ -105,7 +105,7 @@ void insert_at_position(linked_list *list, void *value, size_t index) {
             printf("Cannot insert into index %zu as the previous index does not contain a node\n", index);
         } else {
             previous->next = np;
-            np->next = current; 
+            np->next = current;
         }
     } else {
         list->head = np;
@@ -125,11 +125,11 @@ void insert_at_position(linked_list *list, void *value, size_t index) {
 * This method is not to be used with other insertion methods.
 */
 void insert_in_order(linked_list *list, void *value) {
-    node *np = malloc(sizeof(node));
+    list_node *np = malloc(sizeof(list_node));
     np->value = value;
     np->next = NULL;
-    node *previous = NULL;
-    node *current = list->head;
+    list_node *previous = NULL;
+    list_node *current = list->head;
 
     while (current != NULL && value > current->value) {
         previous = current;
@@ -155,7 +155,7 @@ void insert_in_order(linked_list *list, void *value) {
 * Returns: void
 */
 void insert_double_link(linked_list *list, void *value) {
-    node *np = malloc(sizeof(node));
+    list_node *np = malloc(sizeof(list_node));
     np->value = value;
     np->next = list->head;
     np->previous = NULL;
@@ -176,9 +176,9 @@ void insert_double_link(linked_list *list, void *value) {
 *
 * Returns: the node at the given index
 */
-node *get_node(linked_list *list, size_t index) {
-    node *current = list->head;
-    
+list_node *get_node(linked_list *list, size_t index) {
+    list_node *current = list->head;
+
     size_t count = 0;
 
     while (count < index && current->next != NULL) {
@@ -200,10 +200,10 @@ node *get_node(linked_list *list, size_t index) {
 * Returns: void
 */
 void swap_nodes(linked_list *list, void *x, void *y) {
-    node *current_y = list->head;
-    node *current_x = list->head;
-    node *previous_x = NULL;
-    node *previous_y = NULL;
+    list_node *current_y = list->head;
+    list_node *current_x = list->head;
+    list_node *previous_x = NULL;
+    list_node *previous_y = NULL;
 
     if (x != y) {
 
@@ -231,10 +231,10 @@ void swap_nodes(linked_list *list, void *x, void *y) {
                 list->head = current_x;
             }
 
-            node *temp = current_y->next;
+            list_node *temp = current_y->next;
             current_y->next = current_x->next;
             current_x->next = temp;
-        }    
+        }
     }
 }
 
@@ -248,7 +248,7 @@ void swap_nodes(linked_list *list, void *x, void *y) {
 * Returns: void
 */
 size_t count_node_occurences(linked_list *list, void *value) {
-    node *current = list->head;
+    list_node *current = list->head;
     size_t count = 0;
 
     while (current != NULL) {
@@ -269,7 +269,7 @@ size_t count_node_occurences(linked_list *list, void *value) {
 *
 * Returns: void
 */
-void free_node(node **n) {
+void free_node(list_node **n) {
     if (n != NULL && *n != NULL) {
         free(*n);
         *n = NULL;
@@ -285,7 +285,7 @@ void free_node(node **n) {
 * Returns: void
 */
 void delete_at_head(linked_list *list) {
-    node *destroyed_node = list->head;
+    list_node *destroyed_node = list->head;
     list->head = list->head->next;
     free_node(&destroyed_node);
 }
@@ -299,11 +299,11 @@ void delete_at_head(linked_list *list) {
 * Returns: void
 */
 void delete_at_tail(linked_list *list) {
-    node *previous = NULL;
-    node *current = list->head;
+    list_node *previous = NULL;
+    list_node *current = list->head;
 
     if (list->head->next == NULL) {
-        node *destroyed_node = list->head;
+        list_node *destroyed_node = list->head;
         list->head = NULL;
         free_node(&destroyed_node);
     } else {
@@ -326,11 +326,11 @@ void delete_at_tail(linked_list *list) {
 * Returns: void
 */
 void delete_node(linked_list *list, void *value) {
-    node *previous = NULL;
-    node *current = list->head;
+    list_node *previous = NULL;
+    list_node *current = list->head;
 
     if (list->head->value == value) {
-        node *destroyed_node = list->head;
+        list_node *destroyed_node = list->head;
         list->head = list->head->next;
         free_node(&destroyed_node);
     } else {
@@ -352,14 +352,14 @@ void delete_node(linked_list *list, void *value) {
 * Returns: void
 */
 void remove_sorted_duplicates(linked_list *list) {
-    node *current = list->head;
-    node *subsequent = list->head->next;
+    list_node *current = list->head;
+    list_node *subsequent = list->head->next;
 
     if (current != NULL) {
         while (current->next != NULL) {
             if (current->value == current->next->value) {
                 subsequent = current->next->next;
-                node *destroyed_node = current->next;
+                list_node *destroyed_node = current->next;
                 current->next = subsequent;
                 free_node(&destroyed_node);
             } else {
@@ -379,7 +379,7 @@ void remove_sorted_duplicates(linked_list *list) {
 */
 void destroy_list(linked_list **list) {
     while ((*list)->head != NULL) {
-        node *destroyed_node = (*list)->head;
+        list_node *destroyed_node = (*list)->head;
         (*list)->head = (*list)->head->next;
         free_node(&destroyed_node);
     }
@@ -399,11 +399,11 @@ void destroy_list(linked_list **list) {
 * Returns: void
 */
 void reverse_list(linked_list *list) {
-    node *previous = NULL;
-    node *current = list->head;
+    list_node *previous = NULL;
+    list_node *current = list->head;
 
     while (current != NULL) {
-        node *temp = current->next;
+        list_node *temp = current->next;
         current->next = previous;
         previous = current;
         current = temp;
@@ -466,7 +466,7 @@ linked_list *merge_sorted_lists(linked_list *list1, linked_list *list2) {
 * Returns: boolean value of linked list orderness
 */
 bool is_list_sorted(linked_list *list) {
-    node *current = list->head;
+    list_node *current = list->head;
 
     while (current->next != NULL) {
         if (current->value > current->next->value) {
@@ -489,7 +489,7 @@ bool is_list_sorted(linked_list *list) {
 */
 size_t list_length(linked_list *list)  {
     size_t length = 0;
-    node *current = list->head;
+    list_node *current = list->head;
 
     while (current != NULL) {
         current = current->next;
@@ -512,7 +512,7 @@ size_t list_length(linked_list *list)  {
 * the value is a type that can't be cast to size_t.
 */
 void print_list(linked_list *list) {
-    node *current = list->head;
+    list_node *current = list->head;
 
     while (current != NULL) {
         printf("%zu ", (size_t) current->value);
