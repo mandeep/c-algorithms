@@ -5,6 +5,7 @@
 #include "test_bst.c"
 #include "test_ht.c"
 #include "test_linkedlist.c"
+#include "test_dequeue.c"
 #include "test_reverse_digits.c"
 #include "test_remove_duplicates.c"
 #include "test_palindrome.c"
@@ -26,5 +27,6 @@ int main(int argc, char **argv) {
     RUN_SUITE(removal_algorithms);
     RUN_SUITE(palindrome_algorithms);
     RUN_SUITE(bit_algorithms);
+    RUN_SUITE(doubleended_queue);
     GREATEST_MAIN_END();
 }
