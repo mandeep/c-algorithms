@@ -5,27 +5,27 @@
 #include <stdlib.h>
 
 
-typedef struct node {
+typedef struct bst_node {
     size_t value;
-    struct node *left;
-    struct node *right;
-} node;
+    struct bst_node *left;
+    struct bst_node *right;
+} bst_node;
 
-node *create_node(size_t value);
+bst_node *create_node(size_t value);
 
-void insert_node(node **root, size_t value);
+void insert_bst_bst_node(bst_node **root, size_t value);
 
-node *find_node(node *root, size_t value);
+bst_node *find_node(bst_node *root, size_t value);
 
-node *minimum(node *root);
+bst_node *minimum(bst_node *root);
 
-node *maximum(node *root);
+bst_node *maximum(bst_node *root);
 
-void preorder_traversal(node *root);
+void preorder_traversal(bst_node *root);
 
-void inorder_traversal(node *root);
+void inorder_traversal(bst_node *root);
 
-void postorder_traversal(node *root);
+void postorder_traversal(bst_node *root);
 
 
 #endif

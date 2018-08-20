@@ -9,8 +9,8 @@
 *
 * Returns: the newly created node
 */
-node *create_node(size_t value) {
-    node *np = malloc(sizeof(node));
+bst_node *create_node(size_t value) {
+    bst_node *np = malloc(sizeof(bst_node));
     np->value = value;
     np->left = NULL;
     np->right = NULL;
@@ -26,7 +26,7 @@ node *create_node(size_t value) {
 *
 * Returns: void
 */
-void insert_node(node **root, size_t value) {
+void insert_node(bst_node **root, size_t value) {
     if (*root == NULL) {
         *root = create_node(value);
     } else {
@@ -46,7 +46,7 @@ void insert_node(node **root, size_t value) {
 *
 * Returns: void
 */
-void free_node(node **n) {
+void free_node(bst_node **n) {
     if (n != NULL && *n != NULL) {
         free(*n);
         *n = NULL;
@@ -62,7 +62,7 @@ void free_node(node **n) {
 *
 * Returns: the deleted node
 */
-node *delete_node(node *root, size_t value) {
+bst_node *delete_node(bst_node *root, size_t value) {
     if (root == NULL) {
         return root;
     }
@@ -72,15 +72,15 @@ node *delete_node(node *root, size_t value) {
         root->right = delete_node(root->right, value);
     } else {
         if (root->left == NULL) {
-            node *temp = root->right;
+            bst_node *temp = root->right;
             free_node(&root);
             return temp;
         } else if (root->right == NULL) {
-            node *temp = root->left;
+            bst_node *temp = root->left;
             free_node(&root);
             return temp;
         }
-        node *temp = minimum(root->right);
+        bst_node *temp = minimum(root->right);
         root->value = temp->value;
         delete_node(root->right, temp->value);
     }
@@ -95,7 +95,7 @@ node *delete_node(node *root, size_t value) {
 ge
 e* Returns: the node with the passed value or NULL
 */
-node *find_node(node *root, size_t value) {
+bst_node *find_node(bst_node *root, size_t value) {
     if (root == NULL || root->value == value) {
         return root;
     } else if (value < root->value) {
@@ -113,7 +113,7 @@ node *find_node(node *root, size_t value) {
 *
 * Returns: the node that contains the minimum value
 */
-node *minimum(node *root) {
+bst_node *minimum(bst_node *root) {
     if (root->left == NULL) {
         return root;
     } else {
@@ -129,7 +129,7 @@ node *minimum(node *root) {
 *
 * Returns: the node that contains the maximum value
 */
-node *maximum(node *root) {
+bst_node *maximum(bst_node *root) {
     if (root->right == NULL) {
         return root;
     } else {
@@ -145,7 +145,7 @@ node *maximum(node *root) {
 *
 * Returns: the height of the binary search tree
 */
-int height(node *root) {
+int height(bst_node *root) {
     if (root == NULL) {
         return -1;
     }
@@ -168,7 +168,7 @@ int height(node *root) {
 *
 * Returns: the number of nodes in the tree
 */
-size_t count_nodes(node *root) {
+size_t count_nodes(bst_node *root) {
     if (root == NULL) {
         return 0;
     } else {
@@ -184,7 +184,7 @@ size_t count_nodes(node *root) {
 *
 * Returns: the number of leaves in the tree
 */
-size_t count_leaves(node *root) {
+size_t count_leaves(bst_node *root) {
     size_t count = 0;
     if (root->left == NULL && root->right == NULL) {
         count += 1;
@@ -206,7 +206,7 @@ size_t count_leaves(node *root) {
 *
 * Returns: void
 */
-void preorder_traversal(node *root) {
+void preorder_traversal(bst_node *root) {
     if (root != NULL) {
         printf("%zu\n", root->value);
         preorder_traversal(root->left);
@@ -222,7 +222,7 @@ void preorder_traversal(node *root) {
 *
 * Returns: void
 */
-void inorder_traversal(node *root) {
+void inorder_traversal(bst_node *root) {
     if (root != NULL) {
         inorder_traversal(root->left);
         printf("%zu\n", root->value);
@@ -238,7 +238,7 @@ void inorder_traversal(node *root) {
 *
 * Returns: void
 */
-void postorder_traversal(node *root) {
+void postorder_traversal(bst_node *root) {
     if (root != NULL) {
         postorder_traversal(root->left);
         postorder_traversal(root->right);
@@ -249,12 +249,12 @@ void postorder_traversal(node *root) {
 
 /**
 * destroy_tree: delete the entire tree from memory
-* 
+*
 * @root: the root node of the binary search tree
 *
 * Returns: void
 */
-void destroy_tree(node *root) {
+void destroy_tree(bst_node *root) {
     if (root != NULL) {
         destroy_tree(root->left);
         destroy_tree(root->right);

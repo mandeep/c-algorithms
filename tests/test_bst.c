@@ -7,7 +7,7 @@
 
 
 TEST test_create_node(void) {
-    node *test_node = create_node(10);
+    bst_node *test_node = create_node(10);
     ASSERT_EQ_FMT(test_node->value, (size_t) 10, "%zu");
     ASSERT(test_node->left == NULL);
     ASSERT(test_node->right == NULL);
@@ -16,7 +16,7 @@ TEST test_create_node(void) {
 
 
 TEST test_create_tree(void) {
-    node *test_root = create_node(5);
+    bst_node *test_root = create_node(5);
     insert_node(&test_root, 7);
     insert_node(&test_root, 4);
     insert_node(&test_root, 3);
