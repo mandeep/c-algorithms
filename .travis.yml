@@ -22,7 +22,7 @@ before_install:
 script:
   - sudo unlink /usr/bin/gcc && sudo ln -s /usr/bin/gcc-8 /usr/bin/gcc
   - sudo unlink /usr/bin/gcov && sudo ln -s /usr/bin/gcov-8 /usr/bin/gcov
-  - ./run_tests.sh
+  - ./run_tests.sh --coverage
 
 after_success:
     - coveralls --exclude tests
