@@ -13,7 +13,7 @@ typedef struct bst_node {
 
 bst_node *create_node(size_t value);
 
-void insert_bst_bst_node(bst_node **root, size_t value);
+void insert_bst_node(bst_node **root, size_t value);
 
 bst_node *find_node(bst_node *root, size_t value);
 

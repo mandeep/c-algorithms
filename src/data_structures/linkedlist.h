@@ -49,7 +49,7 @@ void swap_nodes(linked_list *list, void *x, void *y);
 
 size_t count_node_occurences(linked_list *list, void *value);
 
-void free_node(list_node **n);
+void free_list_node(list_node **n);
 
 void delete_at_head(linked_list *list);
 

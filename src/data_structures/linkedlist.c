@@ -269,7 +269,7 @@ size_t count_node_occurences(linked_list *list, void *value) {
 *
 * Returns: void
 */
-void free_node(list_node **n) {
+void free_list_node(list_node **n) {
     if (n != NULL && *n != NULL) {
         free(*n);
         *n = NULL;
@@ -287,7 +287,7 @@ void free_node(list_node **n) {
 void delete_at_head(linked_list *list) {
     list_node *destroyed_node = list->head;
     list->head = list->head->next;
-    free_node(&destroyed_node);
+    free_list_node(&destroyed_node);
 }
 
 
@@ -305,14 +305,14 @@ void delete_at_tail(linked_list *list) {
     if (list->head->next == NULL) {
         list_node *destroyed_node = list->head;
         list->head = NULL;
-        free_node(&destroyed_node);
+        free_list_node(&destroyed_node);
     } else {
         while (current->next != NULL) {
             previous = current;
             current = current->next;
         }
         previous->next = NULL;
-        free_node(&current);
+        free_list_node(&current);
     }
 }
 
@@ -332,14 +332,14 @@ void delete_node(linked_list *list, void *value) {
     if (list->head->value == value) {
         list_node *destroyed_node = list->head;
         list->head = list->head->next;
-        free_node(&destroyed_node);
+        free_list_node(&destroyed_node);
     } else {
         while (current != NULL && current->value != value) {
             previous = current;
             current = current->next;
         }
         previous->next = current->next;
-        free_node(&current);
+        free_list_node(&current);
     }
 }
 
@@ -361,7 +361,7 @@ void remove_sorted_duplicates(linked_list *list) {
                 subsequent = current->next->next;
                 list_node *destroyed_node = current->next;
                 current->next = subsequent;
-                free_node(&destroyed_node);
+                free_list_node(&destroyed_node);
             } else {
                 current = current->next;
             }
@@ -381,7 +381,7 @@ void destroy_list(linked_list **list) {
     while ((*list)->head != NULL) {
         list_node *destroyed_node = (*list)->head;
         (*list)->head = (*list)->head->next;
-        free_node(&destroyed_node);
+        free_list_node(&destroyed_node);
     }
 
     if (list != NULL && *list != NULL) {

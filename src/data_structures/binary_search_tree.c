@@ -46,7 +46,7 @@ void insert_node(bst_node **root, size_t value) {
 *
 * Returns: void
 */
-void free_node(bst_node **n) {
+void free_bst_node(bst_node **n) {
     if (n != NULL && *n != NULL) {
         free(*n);
         *n = NULL;
@@ -62,27 +62,27 @@ void free_node(bst_node **n) {
 *
 * Returns: the deleted node
 */
-bst_node *delete_node(bst_node *root, size_t value) {
+bst_node *delete_bst_node(bst_node *root, size_t value) {
     if (root == NULL) {
         return root;
     }
     if (value < root->value) {
-        root->left = delete_node(root->left, value);
+        root->left = delete_bst_node(root->left, value);
     } else if (value > root->value) {
-        root->right = delete_node(root->right, value);
+        root->right = delete_bst_node(root->right, value);
     } else {
         if (root->left == NULL) {
             bst_node *temp = root->right;
-            free_node(&root);
+            free_bst_node(&root);
             return temp;
         } else if (root->right == NULL) {
             bst_node *temp = root->left;
-            free_node(&root);
+            free_bst_node(&root);
             return temp;
         }
         bst_node *temp = minimum(root->right);
         root->value = temp->value;
-        delete_node(root->right, temp->value);
+        delete_bst_node(root->right, temp->value);
     }
     return root;
 }
@@ -258,6 +258,6 @@ void destroy_tree(bst_node *root) {
     if (root != NULL) {
         destroy_tree(root->left);
         destroy_tree(root->right);
-        free_node(&root);
+        free_bst_node(&root);
     }
 }
