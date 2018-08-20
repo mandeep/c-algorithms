@@ -11,9 +11,9 @@
 *
 * Returns: the initialized queue
 */
-queue *initialize_queue(void) {
-    queue *q = malloc(sizeof(queue));
-    q->list = malloc(sizeof(linked_list));
+dequeue *initialize_dequeue(void) {
+    dequeue *q = malloc(sizeof(dequeue));
+    q->list = malloc(sizeof(dequeue_list));
 
     q->list->head = NULL;
     q->list->tail = NULL;
@@ -30,8 +30,8 @@ queue *initialize_queue(void) {
 *
 * Returns: void
 */
-void push(queue *q, void *value) {
-    node *np = malloc(sizeof(node));
+void deq_push(dequeue *q, void *value) {
+    dequeue_node *np = malloc(sizeof(dequeue_node));
     np->value = value;
     np->next = NULL;
 
@@ -53,8 +53,8 @@ void push(queue *q, void *value) {
 *
 * Returns: void
 */
-void pushleft(queue *q, void *value) {
-    node *np = malloc(sizeof(node));
+void deq_pushleft(dequeue *q, void *value) {
+    dequeue_node *np = malloc(sizeof(dequeue_node));
     np->value = value;
     np->next = q->list->head;
     q->list->head = np;
@@ -68,7 +68,7 @@ void pushleft(queue *q, void *value) {
 *
 * Returns: void
 */
-void free_node(node **n) {
+void deq_free_node(dequeue_node **n) {
     if (n != NULL && *n != NULL) {
         free(*n);
         *n = NULL;
@@ -83,17 +83,17 @@ void free_node(node **n) {
 *
 * Returns: the value of the node removed from the queue
 */
-void *pop(queue *q) {
-    node *previous = NULL;
-    node *current = q->list->head;
+void *deq_pop(dequeue *q) {
+    dequeue_node *previous = NULL;
+    dequeue_node *current = q->list->head;
 
     void *value = current->value;
 
     if (current->next == NULL) {
-        node *destroyed_node = current;
+        dequeue_node *destroyed_node = current;
         value = current->value;
         current = NULL;
-        free_node(&destroyed_node);
+        free_dequeue_node(&destroyed_node);
     } else {
         while (current->next != NULL) {
             previous = current;
@@ -101,7 +101,7 @@ void *pop(queue *q) {
         }
         value = current->value;
         previous->next = NULL;
-        free_node(&current);
+        free_dequeue_node(&current);
     }
 
     return value;
@@ -115,14 +115,14 @@ void *pop(queue *q) {
 *
 * Returns: the value of the node removed from the queue
 */
-void *popleft(queue *q) {
+void *deq_popleft(dequeue *q) {
     void *value = q->list->head->value;
 
-    node *destroyed_node = q->list->head;
+    dequeue_node *destroyed_node = q->list->head;
 
     q->list->head = q->list->head->next;
 
-    free_node(&destroyed_node);
+    free_dequeue_node(&destroyed_node);
 
     return value;
 }
@@ -135,9 +135,9 @@ void *popleft(queue *q) {
 *
 * Returns: void
 */
-void remove_value(queue *q, void *value) {
-    node *previous = NULL;
-    node *current = q->list->head;
+void deq_remove_value(dequeue *q, void *value) {
+    dequeue_node *previous = NULL;
+    dequeue_node *current = q->list->head;
 
     while (current != NULL && current->value != value) {
         previous = current;
@@ -145,7 +145,7 @@ void remove_value(queue *q, void *value) {
     }
 
     previous->next = current->next;
-    free_node(&current);
+    free_dequeue_node(&current);
 }
 
 
@@ -156,8 +156,8 @@ void remove_value(queue *q, void *value) {
 *
 * Returns: the number of elements in the queue
 */
-size_t length(queue *q) {
-    node *current = q->list->head;
+size_t deq_length(dequeue *q) {
+    dequeue_node *current = q->list->head;
     size_t count = 0;
 
     while (current != NULL) {
@@ -177,8 +177,8 @@ size_t length(queue *q) {
 *
 * Returns: the count of the occurrences of the given value
 */
-size_t count(queue *q, void *value) {
-    node *current = q->list->head;
+size_t deq_count(dequeue *q, void *value) {
+    dequeue_node *current = q->list->head;
     size_t count = 0;
 
     while (current != NULL) {
@@ -199,11 +199,11 @@ size_t count(queue *q, void *value) {
 *
 * Returns: void
 */
-void destroy_queue(queue **q) {
+void destroy_dequeue(dequeue **q) {
     while ((*q)->list->head != NULL) {
-        node *destroyed_node = (*q)->list->head;
+        dequeue_node *destroy_queueroyed_node = (*q)->list->head;
         (*q)->list->head = (*q)->list->head->next;
-        free_node(&destroyed_node);
+        free_dequeue_node(&destroy_queueroyed_node);
     }
 
     if ((*q)->list != NULL) {
@@ -225,8 +225,8 @@ void destroy_queue(queue **q) {
 *
 * Returns: void
 */
-void print_queue(queue *q) {
-    node *current = q->list->head;
+void print_dequeue(dequeue *q) {
+    dequeue_node *current = q->list->head;
 
     while (current != NULL) {
         printf("%zu ", (intptr_t) current->value);

@@ -10,22 +10,22 @@
 * @value: the value of the element to hold in the node
 * @next: the next node to link to when creating a singly linked list
 */
-typedef struct node {
+typedef struct dequeue_node {
     void *value;
-    struct node *next;
-} node;
+    struct dequeue_node *next;
+} dequeue_node;
 
 
 /**
-* linked_list - the linked_list data structure that holds nodes of data
+* dequeue_list - the linked list data structure that holds nodes of data
 *
 * @head: the head node of the linked list
 * @tail: the tail node of the linked list
 */
-typedef struct linked_list {
-    node *head;
-    node *tail;
-} linked_list;
+typedef struct dequeue_list {
+    dequeue_node *head;
+    dequeue_node *tail;
+} dequeue_list;
 
 
 /**
@@ -33,31 +33,31 @@ typedef struct linked_list {
 *
 * @linked_list: the linked list that will hold the elements of the queue
 */
-typedef struct queue {
-    linked_list *list;
-} queue;
+typedef struct dequeue {
+    dequeue_list *list;
+} dequeue;
 
 
-queue *initialize_queue(void);
+dequeue *initialize_dequeue(void);
 
-void push(queue *q, void *value);
+void deq_push(dequeue *q, void *value);
 
-void pushleft(queue *q, void *value);
+void deq_pushleft(dequeue *q, void *value);
 
-void free_node(node **n);
+void free_dequeue_node(dequeue_node **n);
 
-void *pop(queue *q);
+void *deq_pop(dequeue *q);
 
-void *popleft(queue *q);
+void *deq_popleft(dequeue *q);
 
-void remove_value(queue *q, void *value);
+void deq_remove_value(dequeue *q, void *value);
 
-size_t length(queue *q);
+size_t deq_length(dequeue *q);
 
-size_t count(queue *q, void *value);
+size_t deq_count(dequeue *q, void *value);
 
-void destroy_queue(queue **q);
+void destroy_dequeue(dequeue **q);
 
-void print_queue(queue *q);
+void print_dequeue(dequeue *q);
 
 #endif
