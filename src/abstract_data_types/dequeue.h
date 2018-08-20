@@ -44,7 +44,7 @@ void deq_push(dequeue *q, void *value);
 
 void deq_pushleft(dequeue *q, void *value);
 
-void free_dequeue_node(dequeue_node **n);
+void deq_free_node(dequeue_node **n);
 
 void *deq_pop(dequeue *q);
 

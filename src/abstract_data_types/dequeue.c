@@ -93,7 +93,7 @@ void *deq_pop(dequeue *q) {
         dequeue_node *destroyed_node = current;
         value = current->value;
         current = NULL;
-        free_dequeue_node(&destroyed_node);
+        deq_free_node(&destroyed_node);
     } else {
         while (current->next != NULL) {
             previous = current;
@@ -101,7 +101,7 @@ void *deq_pop(dequeue *q) {
         }
         value = current->value;
         previous->next = NULL;
-        free_dequeue_node(&current);
+        deq_free_node(&current);
     }
 
     return value;
@@ -122,7 +122,7 @@ void *deq_popleft(dequeue *q) {
 
     q->list->head = q->list->head->next;
 
-    free_dequeue_node(&destroyed_node);
+    deq_free_node(&destroyed_node);
 
     return value;
 }
@@ -145,7 +145,7 @@ void deq_remove_value(dequeue *q, void *value) {
     }
 
     previous->next = current->next;
-    free_dequeue_node(&current);
+    deq_free_node(&current);
 }
 
 
@@ -203,7 +203,7 @@ void destroy_dequeue(dequeue **q) {
     while ((*q)->list->head != NULL) {
         dequeue_node *destroy_queueroyed_node = (*q)->list->head;
         (*q)->list->head = (*q)->list->head->next;
-        free_dequeue_node(&destroy_queueroyed_node);
+        deq_free_node(&destroy_queueroyed_node);
     }
 
     if ((*q)->list != NULL) {
