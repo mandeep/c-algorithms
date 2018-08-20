@@ -12,8 +12,11 @@ int array_length = sizeof(search_array) / sizeof(int);
 
 
 TEST test_binary_search(void) {
-    int index = binary_search(search_array, array_length, 12);
-    ASSERT_EQ_FMT(index, 7, "%d");
+    int index = binary_search(search_array, array_length, 8);
+    ASSERT_EQ_FMT(index, 3, "%d");
+
+    index = binary_search(search_array, array_length, 26);
+    ASSERT_EQ_FMT(index, 13, "%d");
     PASS();
 }
 
