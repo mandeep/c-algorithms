@@ -8,6 +8,7 @@
 #include "test_dequeue.c"
 #include "test_priority_queue.c"
 #include "test_minimum_stack.c"
+#include "test_queue_array.c"
 #include "test_reverse_digits.c"
 #include "test_remove_duplicates.c"
 #include "test_palindrome.c"
@@ -32,5 +33,6 @@ int main(int argc, char **argv) {
     RUN_SUITE(doubleended_queue);
     RUN_SUITE(min_stack);
     RUN_SUITE(priorityqueue);
+    RUN_SUITE(array_based_queue);
     GREATEST_MAIN_END();
 }
