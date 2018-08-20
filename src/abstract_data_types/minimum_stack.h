@@ -29,16 +29,16 @@ typedef struct minimum_stack {
 } minimum_stack;
 
 
-minimum_stack *initialize_stack(size_t size);
+minimum_stack *initialize_minimum_stack(size_t size);
 
-void push(minimum_stack *stack, void *value);
+void minst_push(minimum_stack *stack, void *value);
 
-void *pop(minimum_stack *stack);
+void *minst_pop(minimum_stack *stack);
 
-void *top(minimum_stack *stack);
+void *minst_top(minimum_stack *stack);
 
-void *minimum(minimum_stack *stack);
+void *minst_minimum(minimum_stack *stack);
 
-void destroy_stack(minimum_stack **stack);
+void minst_destroy(minimum_stack **stack);
 
 #endif

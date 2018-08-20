@@ -22,10 +22,10 @@
 *
 * Returns: the newly initialized minimum_stack
 */
-minimum_stack *initialize_stack(size_t size) {
+minimum_stack *initialize_minimum_stack(size_t size) {
     minimum_stack *stack = malloc(sizeof(tuple) * size);
     stack->top = -1;
-    
+
     return stack;
 }
 
@@ -38,7 +38,7 @@ minimum_stack *initialize_stack(size_t size) {
 *
 * Returns: void
 */
-void push(minimum_stack *stack, void *value) {
+void minst_push(minimum_stack *stack, void *value) {
     tuple element;
     element.value = value;
 
@@ -49,7 +49,7 @@ void push(minimum_stack *stack, void *value) {
     }
 
     stack->top += 1;
-    stack->array[stack->top] = element;    
+    stack->array[stack->top] = element;
 }
 
 
@@ -60,7 +60,7 @@ void push(minimum_stack *stack, void *value) {
 *
 * Returns: the element removed from the stack
 */
-void *pop(minimum_stack *stack) {
+void *minst_pop(minimum_stack *stack) {
     if (stack->top > -1) {
         stack->top -= 1;
     }
@@ -76,7 +76,7 @@ void *pop(minimum_stack *stack) {
 *
 * Returns: the value of the last element added to the stack
 */
-void *top(minimum_stack *stack) {
+void *minst_top(minimum_stack *stack) {
     return stack->array[stack->top].value;
 }
 
@@ -88,7 +88,7 @@ void *top(minimum_stack *stack) {
 *
 * Returns: the minimum value of the stack
 */
-void *minimum(minimum_stack *stack) {
+void *minst_minimum(minimum_stack *stack) {
     return stack->array[stack->top].minimum;
 }
 
@@ -100,7 +100,7 @@ void *minimum(minimum_stack *stack) {
 *
 * Returns: void
 */
-void destroy_stack(minimum_stack **stack) {
+void minst_destroy_stack(minimum_stack **stack) {
     if (stack != NULL && *stack != NULL) {
         free(*stack);
         *stack = NULL;
