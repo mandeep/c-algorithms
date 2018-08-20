@@ -11,11 +11,11 @@
 * @priority: the priority of the node
 * @next: the next node to link to when creating a singly linked list
 */
-typedef struct node {
+typedef struct priority_queue_node {
     void *value;
     size_t priority;
-    struct node *next;
-} node;
+    struct priority_queue_node *next;
+} priority_queue_node;
 
 
 /**
@@ -24,10 +24,10 @@ typedef struct node {
 * @head: the head node of the linked list
 * @tail: the tail node of the linked list
 */
-typedef struct linked_list {
-    node *head;
-    node *tail;
-} linked_list;
+typedef struct priority_queue_list {
+    priority_queue_node *head;
+    priority_queue_node *tail;
+} priority_queue_list;
 
 
 /**
@@ -35,25 +35,25 @@ typedef struct linked_list {
 *
 * @linked_list: the linked list that will hold the elements of the priority queue
 */
-typedef struct queue {
-    linked_list *list;
-} queue;
+typedef struct priority_queue {
+    priority_queue_list *list;
+} priority_queue;
 
 
-queue *initialize_queue(void);
+priority_queue *initialize_priority_queue(void);
 
-void enqueue(queue *q, void *value, size_t priority);
+void pq_enqueue(priority_queue *q, void *value, size_t priority);
 
-void free_node(node **n);
+void pq_free_node(priority_queue_node **n);
 
-void dequeue(queue *q);
+void pq_dequeue(priority_queue *q);
 
-void dequeue_priority(queue *q, size_t priority);
+void pq_dequeue_priority(priority_queue *q, size_t priority);
 
-bool is_empty(queue *q);
+bool pq_is_empty(priority_queue *q);
 
-void destroy_queue(queue **q);
+void pq_destroy(priority_queue **q);
 
-void print_queue(queue *q);
+void pq_print(priority_queue *q);
 
 #endif

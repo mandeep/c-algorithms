@@ -11,9 +11,9 @@
 *
 * Returns: the initialized queue
 */
-queue *initialize_queue(void) {
-    queue *q = malloc(sizeof(queue));
-    q->list = malloc(sizeof(linked_list));
+priority_queue *initialize_priority_queue(void) {
+    priority_queue *q = malloc(sizeof(priority_queue));
+    q->list = malloc(sizeof(priority_queue_list));
 
     q->list->head = NULL;
     q->list->tail = NULL;
@@ -36,13 +36,13 @@ queue *initialize_queue(void) {
 * of the priority queue with the lowest priority nodes appearing
 * towards the end of the priority queue.
 */
-void enqueue(queue *q, void *value, size_t priority) {
-    node *np = malloc(sizeof(node));
+void pq_enqueue(priority_queue *q, void *value, size_t priority) {
+    priority_queue_node *np = malloc(sizeof(priority_queue_node));
     np->value = value;
     np->priority = priority;
     np->next = NULL;
-    node *previous = NULL;
-    node *current = q->list->head;
+    priority_queue_node *previous = NULL;
+    priority_queue_node *current = q->list->head;
 
     while (current != NULL && priority < current->priority) {
         previous = current;
@@ -67,7 +67,7 @@ void enqueue(queue *q, void *value, size_t priority) {
 *
 * Returns: void
 */
-void free_node(node **n) {
+void pq_free_node(priority_queue_node **n) {
     if (n != NULL && *n != NULL) {
         free(*n);
         *n = NULL;
@@ -82,11 +82,11 @@ void free_node(node **n) {
 *
 * Returns: void
 */
-void dequeue(queue *q) {
-    node *front = q->list->head;
+void pq_dequeue(priority_queue *q) {
+    priority_queue_node *front = q->list->head;
     q->list->head = q->list->head->next;
-    
-    free_node(&front);
+
+    pq_free_node(&front);
 }
 
 
@@ -97,9 +97,9 @@ void dequeue(queue *q) {
 *
 * Returns: void
 */
-void dequeue_priority(queue *q, size_t priority) {
-    node *previous = NULL;
-    node *current = q->list->head;
+void pq_dequeue_priority(priority_queue *q, size_t priority) {
+    priority_queue_node *previous = NULL;
+    priority_queue_node *current = q->list->head;
 
     while (priority != current->priority) {
         previous = current;
@@ -108,7 +108,7 @@ void dequeue_priority(queue *q, size_t priority) {
 
     previous->next = current->next;
 
-    free_node(&current);
+    pq_free_node(&current);
 
 }
 
@@ -120,7 +120,7 @@ void dequeue_priority(queue *q, size_t priority) {
 *
 * Returns: boolean value of the priority queue's emptiness
 */
-bool is_empty(queue *q) {
+bool pq_is_empty(priority_queue *q) {
     return q->list->head == NULL;
 }
 
@@ -132,11 +132,11 @@ bool is_empty(queue *q) {
 *
 * Returns: void
 */
-void destroy_queue(queue **q) {
+void pq_destroy(priority_queue **q) {
     while ((*q)->list->head != NULL) {
-        node *destroyed_node = (*q)->list->head;
+        priority_queue_node *destroyed_node = (*q)->list->head;
         (*q)->list->head = (*q)->list->head->next;
-        free_node(&destroyed_node);
+        pq_free_node(&destroyed_node);
     }
 
     if ((*q)->list != NULL) {
@@ -162,9 +162,9 @@ void destroy_queue(queue **q) {
 * to print the value. The cast needs to be changed if
 * the value is a type that can't be cast to intptr_t.
 */
-void print_queue(queue *q) {
-    node *current = q->list->head;
-    
+void pq_print(priority_queue *q) {
+    priority_queue_node *current = q->list->head;
+
     while (current != NULL) {
         printf("%zu ", (intptr_t) current->value);
         current = current->next;
