@@ -2,6 +2,10 @@
 gcc tests/test_suite.c -Wall -Wextra -pedantic -std=c11 -lm -o test_suite --coverage &&
 ./test_suite -v | tests/greenest.sh
 
+if [ $# -eq 0 ]; then
+    rm ./*.gc*
+fi
+
 if [ $# -gt 0 ] && [ "$1" == "--coverage" ]; then
     gcov tests/test_suite.c -o .
 fi
