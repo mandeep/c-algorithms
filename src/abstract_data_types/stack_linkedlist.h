@@ -11,10 +11,10 @@
 * @value: the value to hold in the node
 * @next: pointer to the next link in the linked list
 */
-typedef struct node {
+typedef struct stack_node {
     void *value;
-    struct node *next;
-} node;
+    struct stack_node *next;
+} stack_node;
 
 
 /**
@@ -23,22 +23,22 @@ typedef struct node {
 * @top: the node at the top of the stack
 */
 typedef struct stack {
-     node *top;
+     stack_node *top;
 } stack;
 
 
 stack *initialize_stack(size_t size);
 
-void free_node(node **n);
+void st_free_node(stack_node **n);
 
-void push(stack *st, void *value);
+void st_push(stack *st, void *value);
 
-void *pop(stack *st);
+void *st_pop(stack *st);
 
-bool is_empty(stack *st);
+bool st_is_empty(stack *st);
 
-void *peek(stack *st);
+void *st_peek(stack *st);
 
-void destroy_stack(stack **st);
+void st_destroy(stack **st);
 
 #endif

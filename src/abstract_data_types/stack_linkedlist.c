@@ -27,7 +27,7 @@ stack *initialize_stack(size_t size) {
 *
 * Returns: void
 */
-void free_node(node **n) {
+void st_free_node(stack_node **n) {
     if (n != NULL && *n != NULL) {
         free(*n);
         *n = NULL;
@@ -39,12 +39,12 @@ void free_node(node **n) {
 * push - add an element to the top of the stack
 *
 * @st: the initialized stack
-* @value: the value to add to the stack 
+* @value: the value to add to the stack
 *
 * Returns: void
 */
-void push(stack *st, void *value) {
-    node *np = malloc(sizeof(node));
+void st_push(stack *st, void *value) {
+    stack_node *np = malloc(sizeof(stack_node));
     np->value = value;
     np->next = st->top;
     st->top = np;
@@ -56,14 +56,14 @@ void push(stack *st, void *value) {
 *
 * @st: the stack to remove the element from
 *
-* Returns: the element removed from the top of the stack 
+* Returns: the element removed from the top of the stack
 */
-void *pop(stack *st) {
+void *st_pop(stack *st) {
     if (st->top != NULL) {
         void *value = st->top->value;
-        node *destroyed_node = st->top;
+        stack_node *destroyed_node = st->top;
         st->top = st->top->next;
-        free_node(&destroyed_node);
+        st_free_node(&destroyed_node);
         return value;
     } else {
         return 0;
@@ -78,7 +78,7 @@ void *pop(stack *st) {
 *
 * Returns: boolean value of whether or not the stack is empty
 */
-bool is_empty(stack *st) {
+bool st_is_empty(stack *st) {
     return st->top == NULL;
 }
 
@@ -90,7 +90,7 @@ bool is_empty(stack *st) {
 *
 * Returns: the value of the top element of the stack
 */
-void *peek(stack *st) {
+void *st_peek(stack *st) {
     if (st->top != NULL) {
         return st->top->value;
     }
@@ -107,14 +107,14 @@ void *peek(stack *st) {
 * Each node in the stack needs to be freed since memory was allocated
 * for the nodes. Once the nodes are freed, the memory for the stack
 * can be freed.
-* 
+*
 * Returns: void
 */
-void destroy_stack(stack **st) {
+void st_destroy(stack **st) {
     while ((*st)->top != NULL) {
-        node *destroyed_node = (*st)->top;
+        stack_node *destroyed_node = (*st)->top;
         (*st)->top = (*st)->top->next;
-        free_node(&destroyed_node);
+        st_free_node(&destroyed_node);
     }
     if (st != NULL && *st != NULL) {
         free(*st);
