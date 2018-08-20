@@ -16,11 +16,11 @@
 * to be added to the stack, top is incrmented by 1. Thus, the first
 * element to be added to the stack has an index of 0.
 */
-stack *initialize_stack(size_t capacity) {
-    stack *st = malloc(sizeof(int) * capacity);
-    st->top = -1;
+stack_array *initialize_stack_array(size_t capacity) {
+    stack_array *stack = malloc(sizeof(int) * capacity);
+    stack->top = -1;
 
-    return st;
+    return stack;
 }
 
 
@@ -32,9 +32,9 @@ stack *initialize_stack(size_t capacity) {
 *
 * Returns: void
 */
-void push(stack *st, int value) {
-    st->top += 1;
-    st->array[st->top] = value;
+void sta_push(stack_array *stack, int value) {
+    stack->top += 1;
+    stack->array[stack->top] = value;
 }
 
 
@@ -43,12 +43,12 @@ void push(stack *st, int value) {
 *
 * @st: the stack to remove the element from
 *
-* Returns: the element removed from the top of the stack 
+* Returns: the element removed from the top of the stack
 */
-int pop(stack *st) {
-    int top_element = st->array[st->top];
-    if (st->top > -1) {
-        st->top -= 1;    
+int sta_pop(stack_array *stack) {
+    int top_element = stack->array[stack->top];
+    if (stack->top > -1) {
+        stack->top -= 1;
     }
 
     return top_element;
@@ -62,9 +62,9 @@ int pop(stack *st) {
 *
 * Returns: the value of the top element of the stack
 */
-int peek(stack *st) {
-    if (st->top > -1) {
-        return st->array[st->top];
+int sta_peek(stack_array *stack) {
+    if (stack->top > -1) {
+        return stack->array[stack->top];
     } else {
         return 0;
     }
@@ -78,8 +78,8 @@ int peek(stack *st) {
 *
 * Returns: boolean value of whether or not the stack is empty
 */
-bool is_empty(stack *st) {
-    return st->top == -1;
+bool sta_is_empty(stack_array *stack) {
+    return stack->top == -1;
 }
 
 
@@ -90,9 +90,9 @@ bool is_empty(stack *st) {
 *
 * Returns: void
 */
-void destroy_stack(stack **st) {
-    if (st != NULL && *st != NULL) {
-        free(*st);
-        *st = NULL;
+void sta_destroy(stack_array **stack) {
+    if (stack != NULL && *stack != NULL) {
+        free(*stack);
+        *stack = NULL;
     }
 }
