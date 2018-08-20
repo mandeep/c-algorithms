@@ -12,12 +12,12 @@
 *
 * Returns: the initialized queue
 */
-queue *initialize_queue(size_t capacity) {
-    queue *q = malloc(sizeof(queue) * capacity);
-    q->head = 0;
-    q->tail = 0;
-    q->capacity = capacity;
-    return q;
+queue_array *initialize_queue_array(size_t capacity) {
+    queue_array *queue = malloc(sizeof(queue_array) * capacity);
+    queue->head = 0;
+    queue->tail = 0;
+    queue->capacity = capacity;
+    return queue;
 }
 
 
@@ -29,14 +29,14 @@ queue *initialize_queue(size_t capacity) {
 *
 * Returns: void
 */
-void enqueue(queue *q, int value) {
-    if (q->tail != q->capacity) {
-        q->tail += 1;
+void qa_enqueue(queue_array *queue, int value) {
+    if (queue->tail != queue->capacity) {
+        queue->tail += 1;
     } else {
-        q->tail = 0;
+        queue->tail = 0;
     }
 
-    q->array[q->tail] = value;
+    queue->array[queue->tail] = value;
 }
 
 
@@ -47,14 +47,14 @@ void enqueue(queue *q, int value) {
 *
 * Returns: the value of the element removed from the queue
 */
-int dequeue(queue *q) {
-    if (q->head != q->capacity) {
-        q->head += 1;
+int qa_dequeue(queue_array *queue) {
+    if (queue->head != queue->capacity) {
+        queue->head += 1;
     } else {
-        q->head = 0;
+        queue->head = 0;
     }
 
-    return q->array[q->head];
+    return queue->array[queue->head];
 }
 
 
@@ -65,8 +65,8 @@ int dequeue(queue *q) {
 *
 * Returns: boolean value of the queue's emptiness
 */
-bool is_empty(queue *q) {
-    return q->head == q->tail;
+bool qa_is_empty(queue_array *queue) {
+    return queue->head == queue->tail;
 }
 
 
@@ -77,10 +77,10 @@ bool is_empty(queue *q) {
 *
 * Returns: void
 */
-void destroy_queue(queue **q) {
-    if (q != NULL && *q != NULL) {
-        free(*q);
-        *q = NULL;
+void qa_destroy(queue_array **queue) {
+    if (queue != NULL && *queue != NULL) {
+        free(*queue);
+        *queue = NULL;
     }
 }
 
@@ -95,13 +95,13 @@ void destroy_queue(queue **q) {
 * Because dequeue(queue *q) will alter the value of q->head,
 * q->head is reset after the contents of the queue are displayed.
 */
-void print_queue(queue *q) {
-    int front = q->head;
-    
-    while (!is_empty(q)) {
-        printf("%i ", dequeue(q));
+void qa_print(queue_array *queue) {
+    int front = queue->head;
+
+    while (!qa_is_empty(queue)) {
+        printf("%i ", qa_dequeue(queue));
     }
     printf("\n");
-    
-    q->head = front;
+
+    queue->head = front;
 }
