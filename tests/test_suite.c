@@ -15,6 +15,7 @@
 #include "test_palindrome.c"
 #include "test_bits.c"
 #include "test_stack_array.c"
+#include "test_stack.c"
 
 
 GREATEST_MAIN_DEFS();
@@ -38,5 +39,6 @@ int main(int argc, char **argv) {
     RUN_SUITE(array_based_queue);
     RUN_SUITE(queue_linkedlist);
     RUN_SUITE(array_based_stack);
+    RUN_SUITE(stack_linked_list);
     GREATEST_MAIN_END();
 }
