@@ -26,8 +26,6 @@ int main(int argc, char **argv) {
     RUN_SUITE(sorting_algorithms);
     RUN_SUITE(searching_algorithms);
     RUN_SUITE(euclidean_algorithms);
-    RUN_SUITE(binary_search_tree);
-    RUN_SUITE(linkedlist);
     RUN_SUITE(reverse_algorithms);
     RUN_SUITE(removal_algorithms);
     RUN_SUITE(palindrome_algorithms);
@@ -39,6 +37,8 @@ int main(int argc, char **argv) {
     RUN_SUITE(queue_linkedlist);
     RUN_SUITE(array_based_stack);
     RUN_SUITE(stack_linked_list);
+    RUN_SUITE(binary_search_tree);
+    RUN_SUITE(linkedlist);
     RUN_SUITE(hash_table);
     GREATEST_MAIN_END();
 }
