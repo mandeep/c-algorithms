@@ -18,6 +18,7 @@ compiler: gcc
 before_install:
   - sudo pip install pip --upgrade
   - pip install --user git+https://github.com/eddyxu/cpp-coveralls.git
+  - pip install --user urllib3[secure] --upgrade
   - chmod +x run_tests.sh
 
 script:
