@@ -2,15 +2,26 @@
 gcc tests/test_suite.c -Wall -Wextra -pedantic -std=c11 -lm -o test_suite --coverage &&
 ./test_suite -v | tests/greenest.sh
 
-if [ $# -eq 0 ]; then
-    rm ./*.gc*
-fi
-
-if [ $# -gt 0 ] && [ "$1" == "--coverage" ]; then
+for option in "$@"
+do
+case $option in
+    -c|--coverage)
     gcov tests/test_suite.c -o .
-fi
+    ;;
 
-if [ $# -gt 1 ] && [ "$2" == "--remove" ]; then
+    -r|--remove)
     rm test_suite
     rm ./*.gc*
-fi
+    if [ -d "coverage" ]; then
+        rm coverage.info
+        rm -rf coverage
+    fi
+    ;;
+
+    -h|--html)
+    lcov -c -d . -o coverage.info
+    genhtml coverage.info -o coverage
+    ;;
+
+esac
+done
