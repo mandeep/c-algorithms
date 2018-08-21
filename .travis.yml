@@ -16,7 +16,7 @@ language: c
 compiler: gcc
 
 before_install:
-  - pip install --user cpp-coveralls
+  - pip install --user git+https://github.com/eddyxu/cpp-coveralls.git
   - chmod +x run_tests.sh
 
 script:
