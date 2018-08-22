@@ -181,12 +181,15 @@ list_node *get_node(linked_list *list, size_t index) {
 
     size_t count = 0;
 
-    while (count < index && current->next != NULL) {
+    while (current != NULL) {
+        if (count == index) {
+            return current;
+        }
         current = current->next;
         count += 1;
     }
 
-    return current;
+    return NULL;
 }
 
 
