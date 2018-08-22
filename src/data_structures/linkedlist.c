@@ -306,17 +306,17 @@ void delete_at_tail(linked_list *list) {
     list_node *current = list->head;
 
     if (list->head->next == NULL) {
-        list_node *destroyed_node = list->head;
-        list->head = NULL;
-        free_list_node(&destroyed_node);
+        free_list_node(&list->head);
     } else {
         while (current->next != NULL) {
             previous = current;
             current = current->next;
         }
         previous->next = NULL;
-        free_list_node(&current);
+        free_list_node(&previous->next);
     }
+
+
 }
 
 
