@@ -247,7 +247,7 @@ void swap_nodes(linked_list *list, void *x, void *y) {
 *
 * Returns: void
 */
-size_t count_node_occurences(linked_list *list, void *value) {
+size_t count_node_occurrences(linked_list *list, void *value) {
     list_node *current = list->head;
     size_t count = 0;
 
