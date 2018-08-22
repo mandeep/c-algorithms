@@ -312,7 +312,6 @@ void delete_at_tail(linked_list *list) {
             previous = current;
             current = current->next;
         }
-        previous->next = NULL;
         free_list_node(&previous->next);
     }
 
