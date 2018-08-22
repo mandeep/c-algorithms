@@ -45,6 +45,8 @@ void insert_double_link(linked_list *list, void *value);
 
 list_node *get_node(linked_list *list, size_t index);
 
+int find_list_node(linked_list *list, void *value);
+
 void swap_nodes(linked_list *list, void *x, void *y);
 
 size_t count_node_occurrences(linked_list *list, void *value);

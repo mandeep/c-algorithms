@@ -194,6 +194,31 @@ list_node *get_node(linked_list *list, size_t index) {
 
 
 /**
+* find_node - search the list for the index of the node with the given value
+*
+* @list: the linkedlist in which to retrieve the node's index
+* @value: the value to search for in the list
+*
+* Returns: the index of the node with the given value
+*/
+int find_list_node(linked_list *list, void *value) {
+    list_node *current = list->head;
+
+    size_t index = 0;
+
+    while (current != NULL) {
+        if (current->value == value) {
+            return index;
+        }
+        current = current->next;
+        index += 1;
+    }
+
+    return -1;
+}
+
+
+/**
 * swap_nodes - swap two nodes in the given linked list
 *
 * @list: the linked_list in which to swap nodes

@@ -92,6 +92,22 @@ TEST test_get_node(void) {
 }
 
 
+TEST test_find_node(void) {
+    linked_list *list = initialize_list();
+    insert_at_head(list, (size_t*) 1);
+    insert_at_head(list, (size_t*) 2);
+    insert_at_head(list, (size_t*) 3);
+
+    ASSERT_EQ((int) find_list_node(list, (size_t*) 1), 2);
+    ASSERT_EQ((int) find_list_node(list, (size_t*) 2), 1);
+    ASSERT_EQ((int) find_list_node(list, (size_t*) 3), 0);
+    ASSERT_EQ((int) find_list_node(list, (size_t*) 4), -1);
+
+    destroy_list(&list);
+    PASS();
+}
+
+
 TEST test_swap_nodes(void) {
     linked_list *list = initialize_list();
     insert_at_tail(list, (size_t*) 1);
@@ -294,6 +310,7 @@ SUITE(linkedlist) {
     RUN_TEST(test_insert_in_order);
     RUN_TEST(test_insert_double_link);
     RUN_TEST(test_get_node);
+    RUN_TEST(test_find_node);
     RUN_TEST(test_swap_nodes);
     RUN_TEST(test_count_node_occurrences);
     RUN_TEST(test_delete_at_head);
