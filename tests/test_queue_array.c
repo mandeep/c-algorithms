@@ -4,22 +4,20 @@
 
 
 TEST test_queue_array(void) {
-    queue_array *queue = initialize_queue_array(3);
+    queue_array *queue = initialize_queue_array(6);
+    ASSERT_EQ(qa_is_empty(queue), 1);
 
+    qa_enqueue(queue, 1);
+    qa_enqueue(queue, 2);
     qa_enqueue(queue, 3);
     qa_enqueue(queue, 4);
     qa_enqueue(queue, 5);
+    qa_enqueue(queue, 6);
+
+    qa_dequeue(queue);
+    qa_enqueue(queue, 7);
 
     qa_print(queue);
-
-    ASSERT_EQ(qa_is_empty(queue), 0);
-
-    qa_dequeue(queue);
-    qa_dequeue(queue);
-    qa_dequeue(queue);
-
-    ASSERT_EQ(qa_is_empty(queue), 1);
-
     qa_destroy(&queue);
     PASS();
 }
