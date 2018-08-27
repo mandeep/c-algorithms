@@ -15,7 +15,7 @@
 queue_array *initialize_queue_array(size_t capacity) {
     queue_array *queue = malloc(sizeof(queue_array) * capacity);
     queue->head = 0;
-    queue->tail = 0;
+    queue->tail = -1;
     queue->capacity = capacity;
     return queue;
 }
@@ -30,12 +30,7 @@ queue_array *initialize_queue_array(size_t capacity) {
 * Returns: void
 */
 void qa_enqueue(queue_array *queue, int value) {
-    if (queue->tail != queue->capacity) {
-        queue->tail += 1;
-    } else {
-        queue->tail = 0;
-    }
-
+    queue->tail = (queue->tail + 1) % queue->capacity;
     queue->array[queue->tail] = value;
 }
 
@@ -48,13 +43,9 @@ void qa_enqueue(queue_array *queue, int value) {
 * Returns: the value of the element removed from the queue
 */
 int qa_dequeue(queue_array *queue) {
-    if (queue->head != queue->capacity) {
-        queue->head += 1;
-    } else {
-        queue->head = 0;
-    }
-
-    return queue->array[queue->head];
+    int element = queue->array[queue->head];
+    queue->head = (queue->head + 1) % queue->capacity;
+    return element;
 }
 
 
@@ -66,7 +57,7 @@ int qa_dequeue(queue_array *queue) {
 * Returns: boolean value of the queue's emptiness
 */
 bool qa_is_empty(queue_array *queue) {
-    return queue->head == queue->tail;
+    return queue->head == 0 && queue->tail == -1;
 }
 
 
@@ -96,12 +87,13 @@ void qa_destroy(queue_array **queue) {
 * q->head is reset after the contents of the queue are displayed.
 */
 void qa_print(queue_array *queue) {
-    int front = queue->head;
-
-    while (!qa_is_empty(queue)) {
-        printf("%i ", qa_dequeue(queue));
+    for (int i = queue->head; i < queue->capacity; i++) {
+        printf("%i ", queue->array[i]);
     }
-    printf("\n");
 
-    queue->head = front;
+    for (int j = queue->tail; j < queue->head; j++) {
+        printf("%i ", queue->array[j]);
+    }
+
+    printf("\n");
 }
