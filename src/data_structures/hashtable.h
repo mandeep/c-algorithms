@@ -16,8 +16,8 @@
 * types will need to be changed in other functions as well.
 */
 typedef struct member {
-    size_t key;
-    char *value;
+    void *key;
+    void *value;
 } member;
 
 
@@ -38,11 +38,13 @@ hashtable *ht_new(size_t capacity);
 
 void ht_resize(hashtable **table, size_t capacity);
 
-void ht_insert(hashtable *table, size_t key, char *value);
+size_t hash(void *key);
 
-void ht_remove(hashtable *table, size_t key);
+void ht_insert(hashtable *table, void *key, void *value);
 
-char *ht_search(hashtable *table, size_t key);
+void ht_remove(hashtable *table, void *key);
+
+void *ht_search(hashtable *table, void *key);
 
 void ht_print(hashtable *table);
 

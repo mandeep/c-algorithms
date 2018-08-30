@@ -60,6 +60,29 @@ void ht_resize(hashtable **table, size_t capacity) {
 
 
 /**
+ * hash - create a new hash value from the given key
+ *
+ * @key: the key to insert into the hash table
+ *
+ * Returns: a size_t of the hash value
+ *
+ * The hash algorithm used in this hash function is djb2:
+ * http://www.cse.yorku.ca/~oz/hash.html
+ */
+size_t hash(void *key) {
+    unsigned char *string = (unsigned char*) key;
+    size_t hash_value = 5381;
+
+    int c = 0;
+    while ((c = *string++)) {
+        hash_value = ((hash_value << 5) + hash_value) + c;
+    }
+
+    return hash_value;
+}
+
+
+/**
 * ht_insert - insert a key and corresponding value into the hashtable
 *
 * @table: the hashtable in which to insert the key and value
@@ -68,15 +91,16 @@ void ht_resize(hashtable **table, size_t capacity) {
 *
 * Returns: void
 */
-void ht_insert(hashtable *table, size_t key, char *value) {
+void ht_insert(hashtable *table, void *key, void *value) {
     size_t i = 0;
-    size_t index = ((key % table->size) + i * i) % table->size;
+    size_t hash_value = hash(key);
+    size_t index = ((hash_value % table->size) + i * i) % table->size;
 
     if (table->count < table->size) {
         if (table->members[index].value != NULL && table->members[index].key != key) {
             while (table->members[index].value != NULL) {
                 i += 1;
-                index = ((key % table->size) + i * i) % table->size;
+                index = ((hash_value % table->size) + i * i) % table->size;
             }
         }
 
@@ -95,15 +119,16 @@ void ht_insert(hashtable *table, size_t key, char *value) {
 *
 * Returns: void
 */
-void ht_remove(hashtable *table, size_t key) {
+void ht_remove(hashtable *table, void *key) {
     size_t i = 0;
-    size_t index = ((key % table->size) + i * i) % table->size;
+    size_t hash_value = hash(key);
+    size_t index = ((hash_value % table->size) + i * i) % table->size;
 
     if (table->members[index].key != key) {
         size_t count = 0;
         while (count < table->size && table->members[index].key != key) {
             i += 1;
-            index = ((key % table->size) + i * i) % table->size;
+            index = ((hash_value % table->size) + i * i) % table->size;
             count += 1;
         }
     }
@@ -121,15 +146,16 @@ void ht_remove(hashtable *table, size_t key) {
 *
 * Returns: a string associated with the given key or NULL
 */
-char *ht_search(hashtable *table, size_t key) {
+void *ht_search(hashtable *table, void *key) {
     size_t i = 0;
-    size_t index = ((key % table->size) + i * i) % table->size;
+    size_t hash_value = hash(key);
+    size_t index = ((hash_value % table->size) + i * i) % table->size;
 
     if (table->members[index].key != key) {
         size_t count = 0;
         while (count < table->size && table->members[index].key != key) {
             i += 1;
-            index = ((key % table->size) + i * i) % table->size;
+            index = ((hash_value % table->size) + i * i) % table->size;
             count += 1;
         }
     }
@@ -140,27 +166,6 @@ char *ht_search(hashtable *table, size_t key) {
         return NULL;
     }
 
-}
-
-
-/**
-* ht_print - print to stdout the contents of the hashtable
-*
-* @table: the hashtable whose contents to print to stdout
-*
-* Returns: void
-*/
-void ht_print(hashtable *table) {
-    printf("{");
-    for (size_t i = 0; i < table->size; i++) {
-        if (table->members[i].value != NULL) {
-            printf("%zu: \"%s\"", table->members[i].key, table->members[i].value);
-            if (i < table->size - 1) {
-                printf(", ");
-            }
-        }
-    }
-    printf("}\n");
 }
 
 
