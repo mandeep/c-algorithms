@@ -11,7 +11,9 @@ case $option in
 
     -r|--remove)
     rm test_suite
-    rm ./*.gc*
+    rm *.gcno
+    rm *.gcda
+    rm *.gcov
     if [ -d "coverage" ]; then
         rm coverage.info
         rm -rf coverage
