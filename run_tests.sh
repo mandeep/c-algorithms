@@ -21,6 +21,7 @@ case $option in
     -h|--html)
     lcov -c -d . -o coverage.info
     genhtml coverage.info -o coverage
+    xdg-open coverage/index.html
     ;;
 
 esac
