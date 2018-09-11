@@ -10,10 +10,10 @@ case $option in
     ;;
 
     -r|--remove)
-    rm test_suite
-    rm ./*.gc*
+    rm -f test_suite
+    rm -f ./*.gc*
     if [ -d "coverage" ]; then
-        rm coverage.info
+        rm -f coverage.info
         rm -rf coverage
     fi
     ;;
