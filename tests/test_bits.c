@@ -12,6 +12,16 @@ TEST test_bit_algorithms(void) {
     ASSERT_EQ(swap_bits(6, 0, 1), 5);
     ASSERT_EQ(reverse_bits(10), 5);
     ASSERT_EQ(reverse_bits(11), 13);
+
+    int array[32] = {0};
+    int_to_binary(256, array);
+    for (int i = 31; i >= 0; i--) {
+        if (i == 23) {
+            ASSERT_EQ(array[i], 1);
+        } else {
+            ASSERT_EQ(array[i], 0);
+        }
+    }
     PASS();
 }
 
