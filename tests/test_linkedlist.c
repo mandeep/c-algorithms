@@ -2,6 +2,10 @@
 
 #include "../src/data_structures/linkedlist.c"
 
+void print_node(list_node *node) {
+    printf("%zu\n", (size_t) node->value);
+}
+
 
 TEST test_insert_at_tail(void) {
     linked_list *list = initialize_list();
@@ -289,15 +293,15 @@ TEST test_list_length(void) {
 }
 
 
-TEST test_print_list(void) {
+TEST test_traverse_list(void) {
 
     linked_list *list = initialize_list();
-    insert_at_tail(list, (size_t*) 3);
-    insert_at_tail(list, (size_t*) 1);
-    insert_at_tail(list, (size_t*) 5);
-    insert_at_tail(list, (size_t*) 0);
+    insert_at_head(list, (size_t*) 3);
+    insert_at_head(list, (size_t*) 1);
+    insert_at_head(list, (size_t*) 5);
+    insert_at_head(list, (size_t*) 0);
 
-    print_list(list);
+    traverse_list(list, print_node);
     destroy_list(&list);
     PASS();
 }
@@ -321,5 +325,5 @@ SUITE(linkedlist) {
     RUN_TEST(test_merge_sorted_lists);
     RUN_TEST(test_is_list_sorted);
     RUN_TEST(test_list_length);
-    RUN_TEST(test_print_list);
+    RUN_TEST(test_traverse_list);
 }

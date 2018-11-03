@@ -528,21 +528,18 @@ size_t list_length(linked_list *list)  {
 
 
 /**
-* print_list - print the contents of the linked list
+* traverse_list - traverse the linked list node by node
 *
-* @list: the linked_list whose values to print
+* @list: the linked_list to traverse
 *
 * Returns: void
 *
-* printf casts the current->value to size_t in order
-* to print the value. The cast needs to be changed if
-* the value is a type that can't be cast to size_t.
 */
-void print_list(linked_list *list) {
+void traverse_list(linked_list *list, void (*fn)(list_node *node)) {
     list_node *current = list->head;
 
     while (current != NULL) {
-        printf("%zu ", (size_t) current->value);
+        fn(current);
         current = current->next;
     }
 

@@ -71,6 +71,6 @@ bool is_list_sorted(linked_list *list);
 
 size_t list_length(linked_list *list);
 
-void print_list(linked_list *list);
+void traverse_list(linked_list *list, void (*fn)(list_node *node));
 
 #endif
