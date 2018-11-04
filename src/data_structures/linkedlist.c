@@ -542,6 +542,4 @@ void traverse_list(linked_list *list, void (*fn)(list_node *node)) {
         fn(current);
         current = current->next;
     }
-
-    printf("\n");
 }
