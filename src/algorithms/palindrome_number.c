@@ -12,10 +12,7 @@
 */
 bool is_palindrome_int(size_t n) {
     size_t length = floor(log10(n)) + 1;
-    :x
-:xc
-:x
-:x
+    size_t exponent = pow(10, length -1);
 
     for (size_t _ = 0; _ < length / 2; _++) {
         if (n / exponent != n % 10) {
