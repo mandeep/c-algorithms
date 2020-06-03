@@ -4,7 +4,9 @@
 
 #include "greatest.h"
 
-#include "../src/algorithms/searching.c"
+#include "../src/algorithms/binary_search.c"
+#include "../src/algorithms/find_first_occurrence.c"
+#include "../src/algorithms/linear_search.c"
 
 
 int search_array[] = {2, 4, 6, 8, 10, 12, 12, 12, 14, 16, 18, 20, 24, 26, 28, 30};

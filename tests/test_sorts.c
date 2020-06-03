@@ -5,7 +5,13 @@
 
 #include "greatest.h"
 
-#include "../src/algorithms/sorting.c"
+#include "../src/algorithms/bubble_sort.c"
+#include "../src/algorithms/counting_sort.c"
+#include "../src/algorithms/heap_sort.c"
+#include "../src/algorithms/insertion_sort.c"
+#include "../src/algorithms/merge_sort.c"
+#include "../src/algorithms/quick_sort.c"
+#include "../src/algorithms/selection_sort.c"
 
 
 const int TEST_ARRAY_SIZE = 10;

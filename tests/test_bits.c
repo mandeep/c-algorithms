@@ -1,6 +1,10 @@
 #include "greatest.h"
 
-#include "../src/algorithms/bits.c"
+#include "../src/algorithms/check_parity.c"
+#include "../src/algorithms/convert_to_binary.c"
+#include "../src/algorithms/number_of_one_bits.c"
+#include "../src/algorithms/reverse_bits.c"
+#include "../src/algorithms/swap_bits.c"
 
 
 TEST test_bit_algorithms(void) {
