@@ -11,6 +11,7 @@
 #include "../src/algorithms/insertion_sort.c"
 #include "../src/algorithms/merge_sort.c"
 #include "../src/algorithms/quick_sort.c"
+#include "../src/algorithms/radix_sort.c"
 #include "../src/algorithms/selection_sort.c"
 
 
@@ -44,6 +45,8 @@ TEST test_bubble_sort(void) {
         ASSERT(array[i] <= array[i+1]);
     }
     PASS();
+
+    free(array);
 }
 
 TEST test_counting_sort(void) {
@@ -61,6 +64,8 @@ TEST test_counting_sort(void) {
         ASSERT(sorted_array[i] <= sorted_array[i+1]);
     }
     PASS();
+
+    free(array);
 }
 
 TEST test_heap_sort(void) {
@@ -72,6 +77,8 @@ TEST test_heap_sort(void) {
         ASSERT(array[i] <= array[i+1]);
     }
     PASS();
+
+    free(array);
 }
 
 
@@ -84,6 +91,8 @@ TEST test_insertion_sort(void) {
         ASSERT(array[i] <= array[i+1]);
     }
     PASS();
+
+    free(array);
 }
 
 TEST test_merge_sort(void) {
@@ -95,6 +104,8 @@ TEST test_merge_sort(void) {
         ASSERT(array[i] <= array[i+1]);
     }
     PASS();
+
+    free(array);
 }
 
 TEST test_quick_sort(void) {
@@ -106,6 +117,21 @@ TEST test_quick_sort(void) {
         ASSERT(array[i] <= array[i+1]);
     }
     PASS();
+
+    free(array);
+}
+
+TEST test_radix_sort(void) {
+    int *array = create_random_array(TEST_ARRAY_SIZE);
+
+    radix_sort(array, TEST_ARRAY_SIZE);
+
+    for (int i = 0; i < TEST_ARRAY_SIZE-1; i++) {
+        ASSERT(array[i] <= array[i+1]);
+    }
+    PASS();
+
+    free(array);
 }
 
 TEST test_selection_sort(void) {
@@ -117,6 +143,8 @@ TEST test_selection_sort(void) {
         ASSERT(array[i] <= array[i+1]);
     }
     PASS();
+
+    free(array);
 }
 
 
@@ -127,5 +155,6 @@ SUITE(sorting_algorithms) {
     RUN_TEST(test_insertion_sort);
     RUN_TEST(test_merge_sort);
     RUN_TEST(test_quick_sort);
+    RUN_TEST(test_radix_sort);
     RUN_TEST(test_selection_sort);
 }

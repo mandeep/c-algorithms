@@ -7,7 +7,7 @@
  *
  * Returns: void
  */
-void counting_sort(int array[], int length, int digit) {
+void radix_counting_sort(int array[], int length, int digit) {
     int output[length];
     int count[10] = {0};
 
@@ -53,6 +53,6 @@ void radix_sort(int array[], int length) {
     }
 
     for (int digit = 1; maximum / digit > 0; digit *= 10) {
-        counting_sort(array, length, digit);
+        radix_counting_sort(array, length, digit);
     }
 }
