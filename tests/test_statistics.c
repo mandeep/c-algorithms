@@ -4,7 +4,7 @@
 
 #include "greatest.h"
 
-#include "../src/algorithms/statistics.c"
+#include "../src/algorithms/ith_order_statistic.c"
 
 
 TEST test_ith_order_statistic(void) {
